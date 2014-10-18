@@ -1,0 +1,25 @@
+{
+  "name": "_n",
+  "version": "0.0.1",
+  "homepage": "https://github.com/niklasp/_n",
+  "authors": [
+    "Niklas P <contact@niklasplessing.net>"
+  ],
+  "description": "very good art theme starting point",
+  "keywords": [
+    "art",
+    "wordpress",
+    "theme"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0"
+  }
+}
