@@ -1,15 +1,12 @@
 {
   "name": "_n",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "homepage": "https://github.com/niklasp/_n",
   "authors": [
     "Niklas P <contact@niklasplessing.net>"
   ],
-  "description": "very good art theme starting point",
-  "keywords": [
-    "art",
-    "wordpress",
-    "theme"
+  "moduleType": [
+    "node"
   ],
   "license": "MIT",
   "ignore": [
@@ -20,24 +17,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.2.0"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.5",
-    "matchdep": "~0.3.0",
-    "grunt-contrib-uglify": "~0.1.1",
-    "grunt-contrib-cssmin": "~0.6.0",
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-contrib-sass": "~0.2.2",
-    "grunt-contrib-compass": "~1.0.1",
-    "grunt-cssjanus": "~0.1.1",
-    "jpegtran-bin": "0.2.0",
-    "grunt-contrib-imagemin": "~0.5.0",
-    "connect-livereload": "~0.5.0",
-    "grunt-open": "~0.2.3",
-    "grunt-contrib-connect": "~0.8.0",
-    "grunt-contrib-less": "~0.11.4"
-  },
-  "main": "index.php"
+    "jquery": ">= 1.9.0"
+  }
 }

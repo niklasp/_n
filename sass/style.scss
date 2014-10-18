@@ -28,4 +28,12 @@
 @import "comments";
 @import "widgets";
 @import "infinitescroll";
+
+//bootstrap
+// Core variables and mixins
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid";
+
 @import "main";
