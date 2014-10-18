@@ -1,5 +1,6 @@
 # initialization
-> run npm install
+> run npm install -save-dev
+> run grunt to build style.css
 
 # underscores-wp-theme
 
