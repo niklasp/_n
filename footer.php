@@ -12,12 +12,14 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<a href="http://wordpress.org/" rel="generator"><?php printf( __( 'Proudly powered by %s', '_n' ), 'WordPress' ); ?></a>
+			&copy; 2014 <?php bloginfo('name'); ?>
 			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', '_n' ), '_n', '<a href="http://www.sennza.com.au/" rel="designer">Sennza</a>' ); ?>
+			alle Rechte vorbehalten
+			
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
+</div><!-- .container -->
 
 <?php wp_footer(); ?>
 
