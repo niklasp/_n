@@ -1,0 +1,30 @@
+/*!
+ * Theme Name:  _n
+ * Theme URI:   http://www.sennza.com.au/
+ * Description: Yet Another Very good starting point for art themes
+ * Author:      Niklas Plessing
+ * Author URI:  niklasplessing.net
+ * Version:     0.1.0
+ * Tags:
+ * Text Domain: _n
+ * Domain Path: /languages/
+ *
+ * License:     GPLv2+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ */
+
+@import "compass";
+@import "reset";
+@import "global";
+@import "links";
+@import "alignment";
+@import "accessibility";
+@import "clearing";
+@import "menu";
+@import "content";
+@import "asides";
+@import "media";
+@import "navigation";
+@import "comments";
+@import "widgets";
+@import "infinitescroll";
