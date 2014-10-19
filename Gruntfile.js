@@ -4,6 +4,14 @@ module.exports = function( grunt ) {
 	// Load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+	var jsFileList = [
+		'js/navigation.js',
+		'js/skip-link-focus-fix.js',
+		'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
+		'bower_components/masonry/dist/masonry.pkgd.js',
+		'js/theme.js'
+	];    
+
 	// Project configuration
 	grunt.initConfig( {
 		pkg:    grunt.file.readJSON( 'package.json' ),
@@ -11,7 +19,9 @@ module.exports = function( grunt ) {
 			all: [
 				'Gruntfile.js',
 				'js/**/*.js',
-				'!js/**/*.min.js'
+				'!js/**/*.min.js',
+				'!js/bower_components/**/*.js',
+				'!js/scripts.js'
 			],
 			options: {
 				curly:   true,
@@ -53,18 +63,22 @@ module.exports = function( grunt ) {
 				dest: 'rtl.css'
 			}
 		},
-		uglify: {
-			all: {
-				files: {
-					'js/customizer.min.js': 'js/customizer.js',
-					'js/navigation.min.js': 'js/navigation.js',
-					'js/skip-link-focus-fix.min.js': 'js/skip-link-focus-fix.js'
-				},
-				mangle: {
-					except: ['jQuery']
-				}
+		concat: {
+			options: {
+				separator: ';'
+			},
+			dist: {
+				src: [jsFileList],
+				dest: 'js/scripts.js'
 			}
 		},
+		uglify: {
+			dist: {
+				files: {
+					'js/scripts.min.js': [jsFileList]
+				}
+			}
+		},		
 		watch:  {
 			compass: {
 				files: ['sass/**/*.scss'],
@@ -107,7 +121,7 @@ module.exports = function( grunt ) {
 	});
 	
 	// Default task.
-	grunt.registerTask( 'default', [ 'compass', 'cssmin', 'cssjanus:dev', 'jshint' ] );
+	grunt.registerTask( 'default', [ 'compass', 'cssmin', 'cssjanus:dev', 'jshint', 'concat' ] );
 	// Build task
 	grunt.registerTask( 'build',   [ 'cssmin', 'jshint', 'uglify', 'imagemin:build' ] );
 

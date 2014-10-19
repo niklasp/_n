@@ -27,11 +27,21 @@
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 		</div>
 
-		<nav id="site-navigation" class="main-navigation" role="navigation">
+		<nav id="site-navigation" class="" role="navigation">
 			<h1 class="menu-toggle"><?php _e( 'Menu', '_n' ); ?></h1>
 			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', '_n' ); ?></a>
+			<div class="dropdown">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+			    Menu
+			    <span class="caret"></span>
+			  </button>
+			<?php wp_nav_menu( array( 
+			'theme_location' => 'primary', 
+			'walker' => new Walker_Button_Menu(),
+			'container' => '',
+			'menu_class' => 'dropdown-menu' ) ); ?>
+		</div>
 
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 

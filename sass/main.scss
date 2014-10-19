@@ -1,3 +1,75 @@
-body {
-	
+.container { 
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.sub-menu {
+    float: left;
+    min-width: 160px;
+    margin: 0 0 0 2em;
+    list-style: none outside none;
+    font-size: 14px;
+    text-align: left;
+}
+
+.sub-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857;
+    color: #333;
+    white-space: nowrap;
+}
+
+.btn {
+	border-radius: 0;
+}
+.dropdown-menu {
+	border-radius: 0;
+}
+#masthead {
+	margin: 20px 0 20px 0;
+}
+.site-title {
+	margin-bottom: 20px;
+}
+
+//masonry styles
+.item {
+    width: 32%;
+    margin-bottom: 10px;
+}
+.item > .loading {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    background: rgba(255,255,255,0.7) url(http://i.imgur.com/ocFwBZZ.gif) center center no-repeat;;
+}
+.item > img {
+    width: 100% !important;
+    height: auto;
+}
+.item.large {
+    width: 61%;
+}
+
+.item:hover{ cursor:pointer }
+
+.attachment-container {
+    padding: 40px 0 40px 0;
+    text-align: center;
+    position: relative;
+}
+.attachment {
+    margin: auto;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.attachment img {
+    margin-bottom: 20px;
 }

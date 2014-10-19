@@ -99,6 +99,7 @@ function _n_scripts() {
 	wp_enqueue_script( '_n-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( '_n-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+	wp_enqueue_script( '_n-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -110,4 +111,108 @@ add_action( 'wp_enqueue_scripts', '_n_scripts' );
 /* Let's add the includes. Unused includes will be deleted during setup  */
 foreach ( glob( get_template_directory() . '/inc/*.php' ) as $filename ) {
 	require_once $filename;
+}
+
+/** menus **/
+class Walker_Button_Menu extends Walker_Nav_Menu {
+
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
+           $indent = str_repeat("\t", $depth);
+           $output .= "\n$indent<ul class=\"sub-menu\" role=\"menu\">\n";
+ 	}
+
+    function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        $output .= sprintf( "\n<li><a href='%s'%s>%s</a></li>\n",
+            $item->url,
+            ( $item->object_id === get_the_ID() ) ? ' class="current"' : '',
+            $item->title
+        );
+    }
+
+}
+
+function parse_gallery_shortcode($atts) {
+ 
+    global $post;
+ 
+    if ( ! empty( $atts['ids'] ) ) {
+        // 'ids' is explicitly ordered, unless you specify otherwise.
+        if ( empty( $atts['orderby'] ) )
+            $atts['orderby'] = 'post__in';
+        $atts['include'] = $atts['ids'];
+    }
+ 
+    extract(shortcode_atts(array(
+        'orderby' => 'menu_order ASC, ID ASC',
+        'include' => '',
+        'id' => $post->ID,
+        'itemtag' => 'dl',
+        'icontag' => 'dt',
+        'captiontag' => 'dd',
+        'columns' => 3,
+        'size' => 'medium',
+        'link' => 'file',
+        'type' => 'standard'
+    ), $atts));
+ 
+    $args = array(
+        'post_type' => 'attachment',
+        'post_status' => 'inherit',
+        'post_mime_type' => 'image',
+        'orderby' => $orderby
+    );
+ 
+    if ( !empty($include) )
+        $args['include'] = $include;
+    else {
+        $args['post_parent'] = $id;
+        $args['numberposts'] = -1;
+    }
+    $output = '';
+    $images = get_posts($args);
+    
+    if (empty($atts['type']) || $atts['type'] == 'standard') {
+
+      $output .= '<div class="gallery-container">'; 
+      foreach ( $images as $idx=>$image ) {    
+          $caption = $image->post_excerpt;
+   
+          $description = $image->post_content;
+          if($description == '') $description = $image->post_title;
+   
+          $image_alt = get_post_meta($image->ID,'_wp_attachment_image_alt', true);
+   
+          // render your gallery here
+          $large_url = wp_get_attachment_image_src( $image->ID, 'large');
+          
+          $output .= '<div class="item';
+          // if($idx > 5) {
+          //   $output .= ' not-there';
+          // }
+          $output .= '" data-url="'.get_attachment_link( $image->ID ).'">' . preg_replace( '/(width|height)="\d*"\s/', "", wp_get_attachment_image($image->ID,'medium',false,'data-large-url=' . $large_url[0])) . '</div>';
+      }
+      $output .= '</div><div class="load-more-images"></div>';      
+
+    } elseif ($atts['type'] == 'cuboid') {
+      $cuboid_dir = '/assets/vendor/jquery-cuboid/jquery.cuboid.js';
+      
+      $output = '<div class="cuboid">';
+      foreach ($images as $image) {
+        $output .= preg_replace( '/(width|height)="\d*"\s/', "", wp_get_attachment_image($image->ID,'medium'));
+      }
+      $output .= '</div>';
+
+    }
+
+    return $output;
+}
+remove_shortcode('gallery');
+add_shortcode('gallery', 'parse_gallery_shortcode');
+
+add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 );
+add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 );
+
+function remove_width_attribute( $html ) {
+   $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
+   return $html;
 }
