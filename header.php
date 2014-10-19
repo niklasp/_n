@@ -32,7 +32,7 @@
 			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', '_n' ); ?></a>
 			<div class="dropdown">
 			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-			    Menu
+			    Navigation
 			    <span class="caret"></span>
 			  </button>
 			<?php wp_nav_menu( array( 
