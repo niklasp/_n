@@ -82,11 +82,14 @@ a:active,a:focus,a:hover{
 #masthead {
 	margin: 20px 0 20px 0;
 }
+.site-branding, #site-navigation {
+    display: inline-block;
+}
 .site-title {
 	margin-bottom: 20px;
 }
 .inline-menu {
-    font-size: 20px;
+    
 }
 .inline-menu li > ul {
     margin: 0;
