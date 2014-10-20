@@ -118,7 +118,7 @@ class Walker_Button_Menu extends Walker_Nav_Menu {
 
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
            $indent = str_repeat("\t", $depth);
-           $output .= "\n$indent<ul class=\"sub-menu\" role=\"menu\">\n";
+           $output .= "\n$indent<ul class=\"btn-sub-menu\" role=\"menu\">\n";
  	}
 
     function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {

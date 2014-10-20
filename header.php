@@ -28,19 +28,22 @@
 		</div>
 
 		<nav id="site-navigation" class="" role="navigation">
-			<h1 class="menu-toggle"><?php _e( 'Menu', '_n' ); ?></h1>
 			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', '_n' ); ?></a>
-			<div class="dropdown">
+<!-- 			<div class="dropdown">
 			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
 			    Navigation
 			    <span class="caret"></span>
-			  </button>
-			<?php wp_nav_menu( array( 
+			  </button> -->
+			<?php /*wp_nav_menu( array( 
 			'theme_location' => 'primary', 
 			'walker' => new Walker_Button_Menu(),
 			'container' => '',
-			'menu_class' => 'dropdown-menu' ) ); ?>
-		</div>
+			'menu_class' => 'dropdown-menu' ) ); */?>
+			<?php wp_nav_menu( array( 
+			'theme_location' => 'primary', 
+			'container' => '',
+			'menu_class' => 'inline-menu') ); ?>
+<!-- 		</div> -->
 
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
