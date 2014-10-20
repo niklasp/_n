@@ -5063,4 +5063,23 @@ if ( typeof define === 'function' && define.amd ) {
           });  
         //});
       }
+
+  $('.item').on('click',function(){
+    var $this = $(this);
+    if ($this.hasClass('large')) {
+      var $myurl = $(this).data('url');
+      window.location.href = $myurl;
+    } else {
+      $this.append('<div class="loading"></div>');
+    
+      var $img = $this.children('img');
+      $img.attr("src", $img.data('large-url'));
+      
+          $this.children('.loading').remove();
+          $('.item').removeClass('large');
+          $this.addClass('large');
+          $container.masonry();
+      
+    }
+  });
 })(jQuery);
