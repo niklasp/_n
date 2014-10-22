@@ -5064,9 +5064,9 @@ if ( typeof define === 'function' && define.amd ) {
         //});
       }
 
-  $('.item').on('click',function(){
+  $('.gallery-container .item').on('click',function(){
     var $this = $(this);
-    if ($this.hasClass('large')) {
+    if ($this.hasClass('large') || !$this.parent().hasClass('gallery-container-expand')) {
       var $myurl = $(this).data('url');
       window.location.href = $myurl;
     } else {

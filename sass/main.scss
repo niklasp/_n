@@ -108,9 +108,35 @@ footer {
 }
 
 //masonry styles
-.item {
+.item-6 {
+    width: 15%;
+}
+.item-6.large{
+    width: 31%;
+}
+.item-5 {
+    width: 19%;
+}
+.item-5.large{
+    width: 38%;
+}
+.item-4 {
+    width: 24%;
+}
+.item-4.large {
+    width: 49%; 
+}
+.item-3 {
     width: 32%;
-    margin-bottom: 10px;
+}
+.item-3.large {
+    width: 64%;
+}
+.item-2 {
+    width: 49%;
+}
+.item-1 {
+    width: 99%;
 }
 .item > .loading {
     position: absolute;
@@ -124,9 +150,7 @@ footer {
     width: 100% !important;
     height: auto;
 }
-.item.large {
-    width: 61%;
-}
+
 
 .item:hover{ cursor:pointer }
 

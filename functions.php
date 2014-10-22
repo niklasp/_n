@@ -171,9 +171,22 @@ function parse_gallery_shortcode($atts) {
     $output = '';
     $images = get_posts($args);
     
-    if (empty($atts['type']) || $atts['type'] == 'standard') {
+    if (empty($atts['columns'])) {
+    	$atts['columns'] = 3;
+    }
+    
+    $gallery_type = $atts['gallery_type'];
 
-      $output .= '<div class="gallery-container">'; 
+    if (empty($gallery_type) || strpos($gallery_type,'masonry') !== false ) {
+
+    	$gallery_columns = $atts['columns'];
+    	$image_size = ($gallery_columns > 2 ? 'medium' : 'large');
+
+      $output .= '<div class="gallery-container';
+      if ($gallery_type === 'masonry_expand') {
+      	$output .= ' gallery-container-expand';
+      }
+      $output .= '">'; 
       foreach ( $images as $idx=>$image ) {    
           $caption = $image->post_excerpt;
    
@@ -185,15 +198,12 @@ function parse_gallery_shortcode($atts) {
           // render your gallery here
           $large_url = wp_get_attachment_image_src( $image->ID, 'large');
           
-          $output .= '<div class="item';
-          // if($idx > 5) {
-          //   $output .= ' not-there';
-          // }
-          $output .= '" data-url="'.get_attachment_link( $image->ID ).'">' . preg_replace( '/(width|height)="\d*"\s/', "", wp_get_attachment_image($image->ID,'medium',false,'data-large-url=' . $large_url[0])) . '</div>';
+          $output .= '<div class="item item-' . $gallery_columns;
+          $output .= '" data-url="'.get_attachment_link( $image->ID ).'">' . preg_replace( '/(width|height)="\d*"\s/', "", wp_get_attachment_image($image->ID,$image_size,false,'data-large-url=' . $large_url[0])) . '</div>';
       }
       $output .= '</div><div class="load-more-images"></div>';      
 
-    } elseif ($atts['type'] == 'cuboid') {
+    } elseif ($atts['gallery_type'] == 'cuboid') {
       $cuboid_dir = '/assets/vendor/jquery-cuboid/jquery.cuboid.js';
       
       $output = '<div class="cuboid">';
@@ -216,3 +226,45 @@ function remove_width_attribute( $html ) {
    $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
    return $html;
 }
+
+add_action('print_media_templates', function(){
+
+  // define your backbone template;
+  // the "tmpl-" prefix is required,
+  // and your input field should have a data-setting attribute
+  // matching the shortcode name
+  ?>
+  <script type="text/html" id="tmpl-_n-gallery-type">
+    <label class="setting">
+      <span><?php _e('Gallery Type'); ?></span>
+      <select data-setting="gallery_type">
+        <option value="masonry"> masonry </option>
+        <option value="masonry_expand"> masonry expand </option>      
+      </select>
+    </label>
+  </script>
+
+  <script>
+
+    jQuery(document).ready(function(){
+
+      // add your shortcode attribute and its default value to the
+      // gallery settings list; $.extend should work as well...
+      _.extend(wp.media.gallery.defaults, {
+        gallery_type: 'masonry'
+      });
+
+      // merge default gallery settings template with yours
+      wp.media.view.Settings.Gallery = wp.media.view.Settings.Gallery.extend({
+        template: function(view){
+          return wp.media.template('gallery-settings')(view)
+               + wp.media.template('_n-gallery-type')(view);
+        }
+      });
+
+    });
+
+  </script>
+  <?php
+
+});
