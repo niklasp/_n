@@ -103,17 +103,17 @@ function _n_scripts() {
 
 	wp_enqueue_script( '_n-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
-	global $post;
+	// global $post;
 	
-	if( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'gallery') ) {
-		$atts = shortcode_parse_atts( $post->post_content );
-		if ($atts['gallery_type'] === 'flipbook') {
-			wp_enqueue_script('_n-turnjs', get_template_directory_uri() . '/bower_components/turnjs4/lib/turn.min.js', array(), '20130115', true );
-			wp_enqueue_script('_n-turnjs-scissor', get_template_directory_uri() . '/bower_components/turnjs4/lib/scissor.min.js', array(), '20130115', true );
+	// if( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'gallery') ) {
+	// 	$atts = shortcode_parse_atts( $post->post_content );
+	// 	if ($atts['gallery_type'] === 'flipbook') {
+	// 		// wp_enqueue_script('_n-turnjs', get_template_directory_uri() . '/bower_components/turnjs4/lib/turn.min.js', array(), '20130115', true );
+	// 		// wp_enqueue_script('_n-turnjs-scissor', get_template_directory_uri() . '/bower_components/turnjs4/lib/scissor.min.js', array(), '20130115', true );
 
-			wp_enqueue_script( '_n-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery','_n-turnjs','_n-turnjs-scissor'), '20130115', true );
-		}
-	} 
+	// 		wp_enqueue_script( '_n-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '20130115', true );
+	// 	}
+	// } 
 	
 	wp_enqueue_script( '_n-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '20130115', true );
 
