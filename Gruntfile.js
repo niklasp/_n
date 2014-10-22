@@ -11,6 +11,7 @@ module.exports = function( grunt ) {
 		'bower_components/masonry/dist/masonry.pkgd.js',
 		'bower_components/turnjs4/lib/scissor.js',
 		'bower_components/turnjs4/lib/turn.js',
+		'bower_components/imagesloaded/imagesloaded.pkgd.js',
 		'js/theme.js'
 
 	];    

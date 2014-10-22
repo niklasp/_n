@@ -2,7 +2,7 @@
 	'use strict';
 	var $container = $('.gallery-container');
       if (typeof $container !== 'undefined') { 
-        //$container.imagesLoaded(function() {
+        $container.imagesLoaded(function() {
           $container.masonry({
             // options
             itemSelector: '.item',
@@ -11,7 +11,7 @@
             columnWidth: ".item:not(.large)",
             animate: true
           });  
-        //});
+        });
       }
 
   $('.gallery-container .item').on('click',function(){
