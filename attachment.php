@@ -25,7 +25,7 @@ get_header(); ?>
 						<div class="attachment-container">
 							<div class="attachment">
 								<img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>"  class="attachment-medium" alt="<?php $post->post_excerpt; ?>" />
-								<p><b><?php echo $image_title . '</b>, '; ?><?php echo $caption; ?></p>
+								<p><b><?php echo $image_title . '</b> '; ?><?php if(!empty($caption)) echo ', ' . $caption; ?></p>
 							</div>
 					</div>
 
