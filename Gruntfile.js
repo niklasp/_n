@@ -9,7 +9,10 @@ module.exports = function( grunt ) {
 		'js/skip-link-focus-fix.js',
 		'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
 		'bower_components/masonry/dist/masonry.pkgd.js',
+		'bower_components/turnjs4/lib/scissor.js',
+		'bower_components/turnjs4/lib/turn.js',
 		'js/theme.js'
+
 	];    
 
 	// Project configuration
@@ -38,12 +41,15 @@ module.exports = function( grunt ) {
 					exports: true,
 					module:  false,
 					"jQuery": true,
+					"$": true,
+					"console": true,
 					"wp": true,
 					"require": true,
 					"document": true,
 					"window": true,
 					"location": true,
-					"navigator": true
+					"navigator": true,
+					"screen": true
 				}
 			}		
 		},

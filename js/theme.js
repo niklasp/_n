@@ -39,18 +39,25 @@
   
   if ($flipbook.length) {
       var flip_width = $('.flipcontainer').data("width"),
-      flip_height = $('.flipcontainer').data("height");
+          flip_height = $('.flipcontainer').data("height"),
+          view_height = $(window).height() - 120,
+          flipport_width = view_height/flip_height*flip_width,
+          calc_height = flipport_width/flip_width*flip_height;
+
       
-      $('.flipbook-viewport .double').css("width", flip_width);
-      $('.flipbook-viewport .double').css("height", flip_height);
-      $('.flipbook-viewport .page').css("width", flip_width/2); 
+      $('.flipbook-viewport .double').css("width", flipport_width);
+      $('.flipbook-viewport .double').css("height", view_height);
+      $('.flipbook-viewport .page').css("width", flipport_width/2); 
+      console.log(screen.height);
+      console.log($(document).height());
+      console.log($(window).height());
 
       $('.flipbook .double').scissor();
       $flipbook.turn({
         page: 2,
         autoCenter: true
       });
-      $flipbook.turn("size",flip_width,flip_height);
+      $flipbook.turn("size",flipport_width,view_height);
 
   }
   
