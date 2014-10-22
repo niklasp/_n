@@ -17,7 +17,8 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": ">= 1.9.0"
+    "jquery": ">= 1.9.0",
+    "turnjs4": "http://turnjs.com/confirm-download/5396f77366f55/turnjs4.zip",
   },
   "devDependencies": {
     "masonry": "~3.1.5",
