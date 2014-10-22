@@ -48,9 +48,6 @@
       $('.flipbook-viewport .double').css("width", flipport_width);
       $('.flipbook-viewport .double').css("height", view_height);
       $('.flipbook-viewport .page').css("width", flipport_width/2); 
-      console.log(screen.height);
-      console.log($(document).height());
-      console.log($(window).height());
 
       $('.flipbook .double').scissor();
       $flipbook.turn({

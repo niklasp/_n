@@ -231,7 +231,7 @@ function parse_gallery_shortcode($atts) {
 
     } elseif ($gallery_type === 'flipbook') {
     	//take the first image as a reference image for the size
-    	$reference_image = wp_get_attachment_image_src($images[0]->ID,'large');
+    	$reference_image = wp_get_attachment_image_src($images[0]->ID,'full');
     	
     	$output .= '<div class="flipbook-viewport"><div class="flipcontainer" data-width="' . $reference_image[1] .'" data-height="' . $reference_image[2] . '"><div class="flipbook">';
     	$output .= '<div class="page front-page"></div>';
