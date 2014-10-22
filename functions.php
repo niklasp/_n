@@ -241,6 +241,19 @@ function parse_gallery_shortcode($atts) {
 		}
 		$output .= '<div class="page"></div>';
     	$output .= '</div></div></div>';
+    } elseif ( $gallery_type === 'bxslider') {
+    	$output .= '<ul class="bxslider">';
+    	foreach ($images as $image) {
+			$large_url = wp_get_attachment_image_src( $image->ID, 'large');
+			$output .= '<li><img src="' . $large_url[0] .'" /></li>';
+		}
+		$output .= '</ul>';
+		$output .= '<div id="bx-pager">';
+		foreach($images as $idx => $image) {
+			$thumb_url = wp_get_attachment_image_src( $image->ID, 'thumbnail');
+  			$output .= '<a data-slide-index="' . $idx . '" href=""><img src="' . $thumb_url[0] . '" /></a>';
+  		}
+		$output .= '</div>';
     }
 
     return $output;
@@ -270,6 +283,7 @@ add_action('print_media_templates', function(){
         <option value="masonry"> masonry </option>
         <option value="masonry_expand"> masonry expand </option>      
         <option value="flipbook"> flipbook </option> 
+        <option value="bxslider"> bxslider </option>
       </select>
     </label>
   </script>

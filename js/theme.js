@@ -57,5 +57,15 @@
       $flipbook.turn("size",flipport_width,view_height);
 
   }
+
+  var $bxslider = $('.bxslider');
+  if ($bxslider.length) {
+    $bxslider.bxSlider({
+      adaptiveHeight: true,
+      slideWidth: 600,
+      mode: 'fade',
+      pagerCustom: '#bx-pager'
+    });
+  }
   
 })(jQuery);

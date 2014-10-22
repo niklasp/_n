@@ -210,7 +210,6 @@ footer {
     user-select: none;
     margin:0;
 }
-
 .flipbook-viewport .shadow{
     -webkit-transition: -webkit-box-shadow 0.5s;
     -moz-transition: -moz-box-shadow 0.5s;
@@ -226,4 +225,8 @@ footer {
 
 .flipbook-viewport .double{
     background-size:100% 100%;
+}
+
+.bxslider {
+    margin: 0;
 }
