@@ -32,4 +32,26 @@
       
     }
   });
+
+  //flipbook
+  
+  var $flipbook = $('.flipbook');
+  
+  if ($flipbook.length) {
+      var flip_width = $('.flipcontainer').data("width"),
+      flip_height = $('.flipcontainer').data("height");
+      
+      $('.flipbook-viewport .double').css("width", flip_width);
+      $('.flipbook-viewport .double').css("height", flip_height);
+      $('.flipbook-viewport .page').css("width", flip_width/2); 
+
+      $('.flipbook .double').scissor();
+      $flipbook.turn({
+        page: 2,
+        autoCenter: true
+      });
+      $flipbook.turn("size",flip_width,flip_height);
+
+  }
+  
 })(jQuery);

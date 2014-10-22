@@ -93,12 +93,28 @@ add_action( 'widgets_init', '_n_widgets_init' );
 /**
  * Enqueue scripts and styles
  */
+
+
+
 function _n_scripts() {
 	wp_enqueue_style( '_n-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( '_n-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( '_n-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+
+	global $post;
+	
+	if( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'gallery') ) {
+		$atts = shortcode_parse_atts( $post->post_content );
+		if ($atts['gallery_type'] === 'flipbook') {
+			wp_enqueue_script('_n-turnjs', get_template_directory_uri() . '/bower_components/turnjs4/lib/turn.min.js', array(), '20130115', true );
+			wp_enqueue_script('_n-turnjs-scissor', get_template_directory_uri() . '/bower_components/turnjs4/lib/scissor.min.js', array(), '20130115', true );
+
+			wp_enqueue_script( '_n-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery','_n-turnjs','_n-turnjs-scissor'), '20130115', true );
+		}
+	} 
+	
 	wp_enqueue_script( '_n-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -107,6 +123,7 @@ function _n_scripts() {
 
 }
 add_action( 'wp_enqueue_scripts', '_n_scripts' );
+
 
 /* Let's add the includes. Unused includes will be deleted during setup  */
 foreach ( glob( get_template_directory() . '/inc/*.php' ) as $filename ) {
@@ -212,6 +229,18 @@ function parse_gallery_shortcode($atts) {
       }
       $output .= '</div>';
 
+    } elseif ($gallery_type === 'flipbook') {
+    	//take the first image as a reference image for the size
+    	$reference_image = wp_get_attachment_image_src($images[0]->ID,'large');
+    	
+    	$output .= '<div class="flipbook-viewport"><div class="flipcontainer" data-width="' . $reference_image[1] .'" data-height="' . $reference_image[2] . '"><div class="flipbook">';
+    	$output .= '<div class="page front-page"></div>';
+		foreach ($images as $image) {
+			$large_url = wp_get_attachment_image_src( $image->ID, 'large');
+			$output .= '<div class="double" style="background-image:url(' . $large_url[0] .')"></div>';
+		}
+		$output .= '<div class="page"></div>';
+    	$output .= '</div></div></div>';
     }
 
     return $output;
@@ -240,6 +269,7 @@ add_action('print_media_templates', function(){
       <select data-setting="gallery_type">
         <option value="masonry"> masonry </option>
         <option value="masonry_expand"> masonry expand </option>      
+        <option value="flipbook"> flipbook </option> 
       </select>
     </label>
   </script>
