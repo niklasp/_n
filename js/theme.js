@@ -60,12 +60,18 @@
 
   var $bxslider = $('.bxslider');
   if ($bxslider.length) {
-    $bxslider.bxSlider({
+    var $bxinstance = $bxslider.bxSlider({
       adaptiveHeight: true,
       slideWidth: 600,
       mode: 'fade',
       pagerCustom: '#bx-pager'
     });
   }
+  $('.bx-right').on('click', function() {
+    $bxinstance.goToNextSlide();
+  });
+  $('.bx-left').on('click', function() {
+    $bxinstance.goToPrevSlide();
+  });
   
 })(jQuery);

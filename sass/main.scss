@@ -230,3 +230,25 @@ footer {
 .bxslider {
     margin: 0;
 }
+.bx-wrapper > .bx-viewport {
+    border: none;
+}
+.bx-wrapper .bx-controls-direction a {
+    width:61px !important;
+    height:48px !important;
+}
+.bx-prev .bx-next {
+    width:61px;
+    height:48px;
+    cursor: pointer;
+}
+.bx-prev {
+    background-image: url(images/leftarrow.gif) !important;
+    background-position: 0 0 !important;
+    left: -68px !important;
+}
+.bx-next {
+    background-image: url(images/rightarrow.gif) !important;
+    background-position: 0 0 !important;
+    right: -58px !important;
+}
