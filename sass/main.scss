@@ -236,7 +236,6 @@ footer {
 .bx-wrapper .bx-controls-direction a {
     width:154px !important;
     height:124px !important;
-    z-index: -1 !important;
 }
 .bx-prev .bx-next {
     width:61px;
@@ -246,10 +245,10 @@ footer {
 .bx-prev {
     background-image: url(images/leftarrow.gif) !important;
     background-position: 0 0 !important;
-    left: -144px !important;
+    left: -142px !important;
 }
 .bx-next {
     background-image: url(images/rightarrow.gif) !important;
     background-position: 0 0 !important;
-    right: -136px !important;
+    right: -149px !important;
 }
