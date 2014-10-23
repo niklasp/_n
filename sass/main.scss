@@ -61,11 +61,36 @@ a:active,a:focus,a:hover{
     z-index: 1000;
     background: #fff;
 }
-#content {
-    padding-top: 40px;
+@media (min-width: 1200px) {
+    #content {
+        padding-top: 60px;
+    }    
 }
+ 
+@media (min-width: 768px) and (max-width: 979px) {
+    #content {
+        padding-top: 100px;
+    }    
+}
+@media (max-width: 767px) { 
+    #content {
+        padding-top: 100px;
+    }
+}
+ 
+@media (max-width: 480px) {
+    #content {
+        padding-top: 120px;
+    }    
+}
+
 footer {
     margin-bottom: 20px;
+}
+.site-branding {
+    background-image: url('http://pablowalser.s3.amazonaws.com/2014/08/Untitled-4-300x67.png');
+    width: 270px;
+    height: 67px;
 }
 .site-branding, #site-navigation {
     display: inline-block;
