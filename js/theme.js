@@ -73,5 +73,11 @@
   $('.bx-left').on('click', function() {
     $bxinstance.goToPrevSlide();
   });
+
+  if ($('#cuboid').length) {
+      $("#cuboid").cuboid({
+        sides: "6"
+      });
+  }
   
 })(jQuery);

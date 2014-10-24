@@ -24,6 +24,7 @@
     "turnjs4": "http://turnjs.com/confirm-download/5396f77366f55/turnjs4.zip",
     "BookBlock": "https://github.com/codrops/BookBlock.git",
     "imagesloaded": "~3.1.8",
-    "bxslider-4": "~4.1.2"
+    "bxslider-4": "~4.1.2",
+    "jquery-cuboid": "https://github.com/niklasp/jquery-cuboid.git"
   }
 }
