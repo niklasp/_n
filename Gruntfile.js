@@ -17,7 +17,6 @@ module.exports = function( grunt ) {
 		'js/theme.js'
 
 	];    
-
 	// Project configuration
 	grunt.initConfig( {
 		pkg:    grunt.file.readJSON( 'package.json' ),
