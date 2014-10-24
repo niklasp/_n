@@ -13,7 +13,7 @@ module.exports = function( grunt ) {
 		'bower_components/turnjs4/lib/turn.js',
 		'bower_components/imagesloaded/imagesloaded.pkgd.js',
 		'bower_components/bxslider-4/jquery.bxslider.js',
-		'bower_components/jquery-cuboid/src/jquery.cuboid.js',
+		'bower_components/jquery-cuboid/dist/jquery.cuboid.js',
 		'js/theme.js'
 
 	];    
