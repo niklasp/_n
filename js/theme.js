@@ -75,9 +75,11 @@
   });
 
   if ($('#cuboid').length) {
-      $("#cuboid").cuboid({
+    imagesLoaded('#cuboid', function() {
+       $("#cuboid").cuboid({
         sides: "6"
-      });
+      });     
+     });
   }
   
 })(jQuery);

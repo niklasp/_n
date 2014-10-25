@@ -51,7 +51,8 @@ module.exports = function( grunt ) {
 					"window": true,
 					"location": true,
 					"navigator": true,
-					"screen": true
+					"screen": true,
+					"imagesLoaded": true
 				}
 			}		
 		},
