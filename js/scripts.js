@@ -10684,6 +10684,8 @@ function makeArray( obj ) {
 					sideclass: "carawall",
 					//TODO
 					perspective: 0,
+					rotateX: -15,
+					rotateY: -45,
 					//TODO
 					side_hierarchy: "left,right,front,back,top,bottom"
 				};
@@ -10749,7 +10751,9 @@ function makeArray( obj ) {
 					offsettop = (offset.top + this.settings['height'] / 2.0),
 					enterX = 0,
 					enterY = 0,
+					settings = this.settings,
 					_width = this.settings['width'];
+
 
 					content3d.on({
 						mouseenter: function(e) {
@@ -10758,16 +10762,16 @@ function makeArray( obj ) {
 						},						
 						mousemove: function(e) {
 							//rotation on mousemove
-							var rotX = (enterY + (offset.top - e.pageY) )/ 4,
-								rotY = Math.floor(((e.pageX - offset.left) - enterX) / _width * 120);
+							var rotX = (enterY + (offset.top - e.pageY) )/ 4 + settings['rotateX'],
+								rotY = Math.floor(((e.pageX - offset.left) - enterX) / _width * 120) + settings['rotateY'];
 							
 							cube.css('transform','rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)');
 							cube.css('-webkit-transform','rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)');
 							cube.addClass('noanimar').removeClass('animar');
 						},
 						mouseout: function() {
-							cube.css('transform','rotateX(0deg) rotateY(0deg)');
-							cube.css('-webkit-transform','rotateX(0deg) rotateY(0deg)');
+							cube.css('transform','rotateX(' + settings['rotateX'] + 'deg) rotateY(' + settings['rotateY'] + 'deg)');
+							cube.css('-webkit-transform','rotateX(' + settings['rotateX'] + 'deg) rotateY(' + settings['rotateY'] + 'deg)');
 							cube.addClass('animar').removeClass('noanimar');
 						}
 					});
@@ -10782,6 +10786,8 @@ function makeArray( obj ) {
 					// 	
 					// 		
 					// 		
+					$('.cube').css({'transform': 'rotateX(' + this.settings['rotateX'] + 'deg) rotateY(' + this.settings['rotateY'] + 'deg)'});
+					console.log('rotateY(' + this.settings['rotateY'] + 'deg)');
 					var imgLoad = imagesLoaded( '.content3d' );
 					imgLoad.on( 'done', function( instance ) {
 						var img1 = new Image(), img2 = new Image(), img3 = new Image();
@@ -10793,7 +10799,7 @@ function makeArray( obj ) {
 						// var _width  = $('.' + sideclass + ':nth-child(2) > li > img').width(),
 						// 	_height = $('.' + sideclass + ':nth-child(1) > li > img').height(),
 						// 	_depth  = $('.' + sideclass + ':nth-child(3) > li > img').height();
-						console.log("now the width is set to " + _width + ' x ' + _height);
+						
 						$('#cuboid').css({
 							"width"			: _width + 'px',
 							"height"		: _height + 'px',
