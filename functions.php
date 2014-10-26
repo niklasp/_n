@@ -271,44 +271,61 @@ function remove_width_attribute( $html ) {
 
 add_action('print_media_templates', function(){
 
-  // define your backbone template;
-  // the "tmpl-" prefix is required,
-  // and your input field should have a data-setting attribute
-  // matching the shortcode name
-  ?>
-  <script type="text/html" id="tmpl-_n-gallery-type">
-    <label class="setting">
-      <span><?php _e('Gallery Type'); ?></span>
-      <select data-setting="gallery_type">
-        <option value="masonry"> masonry </option>
-        <option value="masonry_expand"> masonry expand </option>      
-        <option value="flipbook"> flipbook </option> 
-        <option value="bxslider"> bxslider </option>
-      </select>
-    </label>
-  </script>
+// define your backbone template;
+// the "tmpl-" prefix is required,
+// and your input field should have a data-setting attribute
+// matching the shortcode name
+?>
+<script type="text/html" id="tmpl-_n-gallery-type">
+	<label class="setting">
+	  <span><?php _e('Gallery Type'); ?></span>
+	  <select data-setting="gallery_type">
+	    <option value="masonry"> masonry </option>
+	    <option value="masonry_expand"> masonry expand </option>      
+	    <option value="flipbook"> flipbook </option> 
+	    <option value="bxslider"> bxslider </option>
+	  </select>
+	</label>
+</script>
 
-  <script>
+<script>
 
-    jQuery(document).ready(function(){
+	jQuery(document).ready(function(){
 
-      // add your shortcode attribute and its default value to the
-      // gallery settings list; $.extend should work as well...
-      _.extend(wp.media.gallery.defaults, {
-        gallery_type: 'masonry'
-      });
+	  // add your shortcode attribute and its default value to the
+	  // gallery settings list; $.extend should work as well...
+	  _.extend(wp.media.gallery.defaults, {
+	    gallery_type: 'masonry'
+	  });
 
-      // merge default gallery settings template with yours
-      wp.media.view.Settings.Gallery = wp.media.view.Settings.Gallery.extend({
-        template: function(view){
-          return wp.media.template('gallery-settings')(view)
-               + wp.media.template('_n-gallery-type')(view);
-        }
-      });
+	  // merge default gallery settings template with yours
+	  wp.media.view.Settings.Gallery = wp.media.view.Settings.Gallery.extend({
+	    template: function(view){
+	      return wp.media.template('gallery-settings')(view)
+	           + wp.media.template('_n-gallery-type')(view);
+	    }
+	  });
 
-    });
+	});
 
-  </script>
-  <?php
-
+</script>
+<?php
 });
+
+function _n_analytics_code() {
+	?>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', <?php echo esc_attr(get_option("_n_ga_id")); ?>, 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<?php
+
+}
+add_action( 'wp_footer', '_n_analytics_code' );
