@@ -313,6 +313,7 @@ add_action('print_media_templates', function(){
 });
 
 function _n_analytics_code() {
+	if (get_option("n_ga_id" )) {
 	?>
 
 	<script type="text/javascript">
@@ -327,6 +328,14 @@ function _n_analytics_code() {
 	</script>
 
 	<?php
-
+	}
 }
 add_action( 'wp_footer', '_n_analytics_code' );
+
+function _n_webmaster_tag() {
+	if (get_option("_n_gwt_id")) {
+		$output = '<meta name="google-site-verification" content="%s" />';
+		printf($output, esc_attr(get_option("_n_gwt_id")));
+	}
+}
+add_action( 'wp_head', '_n_webmaster_tag');

@@ -12,29 +12,41 @@ function _n_settings() {
 	
 	if (isset($_POST["update_settings"])) {
     	$ga_id = sanitize_text_field($_POST["ga_id"]);
-    	update_option("_n_ga_id", $ga_id);
+        $gwt_id = sanitize_text_field($_POST["gwt_id"]);
+        update_option("_n_ga_id", $ga_id);
+    	update_option("_n_gwt_id", $gwt_id);
     	?>
     	<div id="message" class="updated">Settings saved</div>
     	<?php
 	}
 	$ga_id = get_option("_n_ga_id");
+    $gwt_id = get_option("_n_gwt_id");
 	?>
     <div class="wrap">
         <?php screen_icon('themes'); ?> <h2>Google Analytics</h2>
  
         <form method="POST" action="">
             <table class="form-table">
+                <tbody>
                 <tr valign="top">
                     <th scope="row">
-			 	    <label for="ga_id">
-				        Google Analytics ID
-				    </label>
+			 	       <label for="ga_id">Google Analytics ID</label>
                     </th>
                     <td>
                         <input type="text" name="ga_id" size="15" value="<?php echo $ga_id;?>" />
                         <input type="hidden" name="update_settings" value="Y" />
                     </td>
                 </tr>
+                <tr>
+                    <th scope="row">
+                        <label for="gwt_id">Google Webmaster Tools head content</label>
+                    </th>
+                    <td>
+                        <input type="text" name="gwt_id" size="15" value="<?php echo $gwt_id;?>" />
+                        <input type="hidden" name="update_settings" value="Y" />
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <input type="submit" value="Save settings" class="button-primary"/>
         </form>
