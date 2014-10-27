@@ -60,6 +60,7 @@
 
   var $bxslider = $('.bxslider');
   if ($bxslider.length) {
+      var $spinner = $('<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>');
       var $bxinstance = $bxslider.bxSlider({
         adaptiveHeight: true,
         slideWidth: 600,
@@ -69,8 +70,11 @@
           $('li', $bxslider).css('visibility', 'visible');
         },
         onSlideBefore: function($slideElement, oldIndex, newIndex){
-          console.log($slideElement);
             var $lazy = $slideElement.find(".lazy");
+                        
+            $lazy.css('visibility','hidden');
+            $slideElement.append($spinner);            
+            imagesLoaded($lazy, function() {$spinner.remove();$lazy.css('visibility','visible');console.log($slideElement);});
             var $load = $lazy.attr("data-src");
             console.log($load);
             $lazy.attr("src",$load).removeClass("lazy");
