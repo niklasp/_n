@@ -218,7 +218,7 @@ function parse_gallery_shortcode($atts) {
           $output .= '<div class="item item-' . $gallery_columns;
           //$output .= '" data-url="'.get_attachment_link( $image->ID ).'">' . preg_replace( '/(width|height)="\d*"\s/', "", wp_get_attachment_image($image->ID,$image_size,false,'datadata-large-url=' . $large_img[0])) . '</div>';
           $img_src = wp_get_attachment_image_src($image->ID,$image_size,false);
-          $output .= '" data-url="'.get_attachment_link( $image->ID ).'">' . preg_replace( '/(width|height)="\d*"\s/', "", '<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-original="' . $img_src[0] . '" />') . '</div>';
+          $output .= '" data-url="'.get_attachment_link( $image->ID ).'">' . preg_replace( '/(width|height)="\d*"\s/', "", '<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-original="' . $img_src[0] . '" data-large-url="' . $large_img[0] . '" />') . '</div>';
       }
       $output .= '</div>';      
 
