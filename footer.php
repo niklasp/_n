@@ -18,7 +18,7 @@
 			<?php 
 			    $page = get_page_by_title( 'Impressum' );
 
-		    	if ( isset($page) && !get_post_status($page->ID) == 'trash') {
+		    	if ( isset($page) && !(get_post_status($page->ID) == 'trash')) {
 		        	?> | <a href="<?php echo get_page_link($page->ID); ?>">Impressum</a><?php
 		        } 
 	        ?>
