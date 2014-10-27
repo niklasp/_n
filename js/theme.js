@@ -60,19 +60,29 @@
 
   var $bxslider = $('.bxslider');
   if ($bxslider.length) {
-    var $bxinstance = $bxslider.bxSlider({
-      adaptiveHeight: true,
-      slideWidth: 600,
-      mode: 'fade',
-      pagerCustom: '#bx-pager'
-    });
+      var $bxinstance = $bxslider.bxSlider({
+        adaptiveHeight: true,
+        slideWidth: 600,
+        mode: 'fade',
+        pagerCustom: '#bx-pager',
+        onSliderLoad: function(){
+          $('li', $bxslider).css('visibility', 'visible');
+        },
+        onSlideBefore: function($slideElement, oldIndex, newIndex){
+          console.log($slideElement);
+            var $lazy = $slideElement.find(".lazy");
+            var $load = $lazy.attr("data-src");
+            console.log($load);
+            $lazy.attr("src",$load).removeClass("lazy");
+        }
+      });
+      $('.bx-right').on('click', function() {
+        $bxinstance.goToNextSlide();
+      });
+      $('.bx-left').on('click', function() {
+        $bxinstance.goToPrevSlide();
+      });
   }
-  $('.bx-right').on('click', function() {
-    $bxinstance.goToNextSlide();
-  });
-  $('.bx-left').on('click', function() {
-    $bxinstance.goToPrevSlide();
-  });
 
   if ($('#cuboid').length) {
     imagesLoaded('#cuboid', function() {

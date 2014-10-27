@@ -213,10 +213,10 @@ function parse_gallery_shortcode($atts) {
           $image_alt = get_post_meta($image->ID,'_wp_attachment_image_alt', true);
    
           // render your gallery here
-          $large_url = wp_get_attachment_image_src( $image->ID, 'large');
+          $large_img = wp_get_attachment_image_src( $image->ID, 'large');
           
           $output .= '<div class="item item-' . $gallery_columns;
-          $output .= '" data-url="'.get_attachment_link( $image->ID ).'">' . preg_replace( '/(width|height)="\d*"\s/', "", wp_get_attachment_image($image->ID,$image_size,false,'data-large-url=' . $large_url[0])) . '</div>';
+          $output .= '" data-url="'.get_attachment_link( $image->ID ).'">' . preg_replace( '/(width|height)="\d*"\s/', "", wp_get_attachment_image($image->ID,$image_size,false,'data-large-url=' . $large_img[0])) . '</div>';
       }
       $output .= '</div><div class="load-more-images"></div>';      
 
@@ -236,24 +236,26 @@ function parse_gallery_shortcode($atts) {
     	$output .= '<div class="flipbook-viewport"><div class="flipcontainer" data-width="' . $reference_image[1] .'" data-height="' . $reference_image[2] . '"><div class="flipbook">';
     	$output .= '<div class="page front-page"></div>';
 		foreach ($images as $image) {
-			$large_url = wp_get_attachment_image_src( $image->ID, 'large');
-			$output .= '<div class="double" style="background-image:url(' . $large_url[0] .')"></div>';
+			$large_img = wp_get_attachment_image_src( $image->ID, 'large');
+			$output .= '<div class="double" style="background-image:url(' . $large_img[0] .')"></div>';
 		}
 		$output .= '<div class="page"></div>';
     	$output .= '</div></div></div>';
+
     } elseif ( $gallery_type === 'bxslider') {
-    	$output .= '<div class="bxcontainer"></div><ul class="bxslider">';
-    	foreach ($images as $image) {
-			$large_url = wp_get_attachment_image_src( $image->ID, 'large');
-			$output .= '<li><img src="' . $large_url[0] .'" /></li>';
+    	$output .= '<div class="bxcontainer">';
+    	$output .= '<ul class="bxslider">';
+    	foreach ($images as $idx => $image) {
+			$large_img = wp_get_attachment_image_src( $image->ID, 'large');
+			//only load first, rest is lazy
+			if ($idx == 0) {
+				$output .= '<li><img src="' . $large_img[0] .'" if() /></li>';
+			} else {
+				$output .= '<li><img class="lazy" src="" data-src="' . $large_img[0] . '"'
+				. ' style="width:' . $large_img[1] . 'px;height:' . $large_img[2] .'px;" /></li>';				
+			}
 		}
-		$output .= '</ul>';
-		// $output .= '<div id="bx-pager">';
-		// foreach($images as $idx => $image) {
-		// 	$thumb_url = wp_get_attachment_image_src( $image->ID, 'thumbnail');
-  // 			$output .= '<a data-slide-index="' . $idx . '" href=""><img src="' . $thumb_url[0] . '" /></a>';
-  // 		}
-		// $output .= '</div>';
+		$output .= '</ul></div>';
     }
 
     return $output;

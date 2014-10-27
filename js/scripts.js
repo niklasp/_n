@@ -10672,7 +10672,7 @@ function makeArray( obj ) {
 		// Create the defaults once
 		var pluginName = "cuboid",
 				defaults = {
-					//the number of sides of the object (2 to n), cube = 6
+					//the number of sides of the object (2 to n) or auto, cube = 6
 					sides: "auto",
 					dimension: 200,
 					width: 240,
@@ -10680,7 +10680,7 @@ function makeArray( obj ) {
 					//defines the spacing (in px) between sides when there are 2 sides only,
 					//otherwise 3 sides span the dimensions of the cube
 					depth: 20,
-					//the class of the cube sides also offers different style options
+					//the class of the cube sides
 					sideclass: "carawall",
 					//TODO
 					perspective: 0,
@@ -10934,19 +10934,29 @@ function makeArray( obj ) {
 
   var $bxslider = $('.bxslider');
   if ($bxslider.length) {
-    var $bxinstance = $bxslider.bxSlider({
-      adaptiveHeight: true,
-      slideWidth: 600,
-      mode: 'fade',
-      pagerCustom: '#bx-pager'
-    });
+      var $bxinstance = $bxslider.bxSlider({
+        adaptiveHeight: true,
+        slideWidth: 600,
+        mode: 'fade',
+        pagerCustom: '#bx-pager',
+        onSliderLoad: function(){
+          $('li', $bxslider).css('visibility', 'visible');
+        },
+        onSlideBefore: function($slideElement, oldIndex, newIndex){
+          console.log($slideElement);
+            var $lazy = $slideElement.find(".lazy");
+            var $load = $lazy.attr("data-src");
+            console.log($load);
+            $lazy.attr("src",$load).removeClass("lazy");
+        }
+      });
+      $('.bx-right').on('click', function() {
+        $bxinstance.goToNextSlide();
+      });
+      $('.bx-left').on('click', function() {
+        $bxinstance.goToPrevSlide();
+      });
   }
-  $('.bx-right').on('click', function() {
-    $bxinstance.goToNextSlide();
-  });
-  $('.bx-left').on('click', function() {
-    $bxinstance.goToPrevSlide();
-  });
 
   if ($('#cuboid').length) {
     imagesLoaded('#cuboid', function() {
