@@ -1,18 +1,32 @@
 ( function($) {
 	'use strict';
+
 	var $container = $('.gallery-container');
-      if (typeof $container !== 'undefined') { 
-        $container.imagesLoaded(function() {
-          $container.masonry({
-            // options
-            itemSelector: '.item',
-            gutter: 10,
-            //isFitWidth: true,
-            columnWidth: ".item:not(.large)",
-            animate: true
-          });  
-        });
-      }
+  
+  if (typeof $container !== 'undefined') {
+    $container.imagesLoaded(function() {
+      $container.masonry({
+        // options
+        itemSelector: '.item',
+        gutter: 10,
+        //isFitWidth: true,
+        columnWidth: ".item:not(.large)",
+        animate: true
+      });
+      $('.item img', $container).addClass('not-loaded');
+      console.log($('.item img'));
+      $('.item img.not-loaded').lazyload({
+          effect: 'fadeIn',
+          load: function() {
+              // Disable trigger on this image
+              console.log($(this));
+              $(this).removeClass("not-loaded");
+              $container.masonry();
+          }
+      });
+      $('.item img.not-loaded').trigger('scroll');            
+    });
+  }
 
   $('.gallery-container .item').on('click',function(){
     var $this = $(this);

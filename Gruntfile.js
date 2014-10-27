@@ -11,6 +11,7 @@ module.exports = function( grunt ) {
 		'bower_components/masonry/dist/masonry.pkgd.js',
 		'bower_components/turnjs4/lib/scissor.js',
 		'bower_components/turnjs4/lib/turn.js',
+		'bower_components/jquery.lazyload/jquery.lazyload.js',
 		'bower_components/imagesloaded/imagesloaded.pkgd.js',
 		'bower_components/bxslider-4/jquery.bxslider.js',
 		'bower_components/jquery-cuboid/src/jquery.cuboid.js',
@@ -52,7 +53,9 @@ module.exports = function( grunt ) {
 					"location": true,
 					"navigator": true,
 					"screen": true,
-					"imagesLoaded": true
+					"imagesLoaded": true,
+					"lazyload": true,
+					"alert": true
 				}
 			}		
 		},
