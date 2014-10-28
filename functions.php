@@ -259,7 +259,7 @@ function parse_gallery_shortcode($atts) {
 			$large_img = wp_get_attachment_image_src( $image->ID, 'large');
 			//only load first, rest is lazy
 			if ($idx == 0) {
-				$output .= '<li><img src="' . $large_img[0] .'" if() /></li>';
+				$output .= '<li><img src="' . $large_img[0] .'" style="width:' . $large_img[1] . 'px;height:' . $large_img[2] .'px;" /></li>';
 			} else {
 				$output .= '<li><img class="lazy" src="" data-src="' . $large_img[0] . '"'
 				. ' style="width:' . $large_img[1] . 'px;height:' . $large_img[2] .'px;" /></li>';				
