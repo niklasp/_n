@@ -11148,6 +11148,7 @@ function makeArray( obj ) {
 
   var $bxslider = $('.bxslider');
   if ($bxslider.length) {
+      $bxslider.css('min-height','300px');
       var $spinner = $('<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>');
       var $bxinstance = $bxslider.bxSlider({
         adaptiveHeight: true,
