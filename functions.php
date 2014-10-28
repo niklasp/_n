@@ -223,11 +223,19 @@ function parse_gallery_shortcode($atts) {
       $output .= '</div>';      
 
     } elseif ($atts['gallery_type'] == 'cuboid') {
-      $cuboid_dir = '/assets/vendor/jquery-cuboid/jquery.cuboid.js';
-      
-      $output = '<div class="cuboid">';
+      $attr = None;
+      $output = '<div id="cuboid">';
+       //. '<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>';
       foreach ($images as $image) {
-        $output .= preg_replace( '/(width|height)="\d*"\s/', "", wp_get_attachment_image($image->ID,'medium'));
+      	$attachment_image = get_post($image->ID );
+      	$image_caption = $attachment_image->post_excerpt;
+      	
+      	if ($image_caption === "full") {
+			$attr = array('class' => 'full');
+      	}
+      	$output .= '<li>'
+        		. preg_replace( '/(width|height)="\d*"\s/', $replace, wp_get_attachment_image($image->ID,'large', false, $attr))
+        		. '</li>';
       }
       $output .= '</div>';
 
@@ -288,6 +296,7 @@ add_action('print_media_templates', function(){
 	    <option value="masonry_expand"> masonry expand </option>      
 	    <option value="flipbook"> flipbook </option> 
 	    <option value="bxslider"> bxslider </option>
+	    <option value="cuboid"> cuboid </option>
 	  </select>
 	</label>
 </script>

@@ -14,6 +14,10 @@ a:visited {
 a:active,a:focus,a:hover{
     color:#191970;
 }
+img.full {
+    width :100%;
+    height: 100%;
+}
 .btn-default, .btn-default:hover, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
     border-color: #000;
 }
