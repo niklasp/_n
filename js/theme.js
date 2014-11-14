@@ -1,6 +1,19 @@
 ( function($) {
 	'use strict';
 
+  function content_padding() {
+    //set the content padding according to the menu height
+    var $header = $('#masthead');
+    var $header_height = $header.height();
+    $('#content').css("padding-top", $header_height);    
+  }
+
+  content_padding();
+
+  $(window).on('resize', function() {
+    content_padding();
+  });
+
 	var $container = $('.gallery-container');
   
   if (typeof $container !== 'undefined') {
