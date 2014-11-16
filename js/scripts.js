@@ -11080,7 +11080,6 @@ function makeArray( obj ) {
     var $header = $('#masthead');
     var $header_height = $header.height();
     $('#content').css("padding-top", $header_height);    
-    console.log($('#content').css("padding-top"));
   }
 
   content_padding();
@@ -11102,12 +11101,12 @@ function makeArray( obj ) {
         animate: true
       });
       $('.item img', $container).addClass('not-loaded');
-      console.log($('.item img'));
+      
       $('.item img.not-loaded').lazyload({
           effect: 'fadeIn',
           load: function() {
               // Disable trigger on this image
-              console.log($(this));
+      
               $(this).removeClass("not-loaded");
               $container.masonry();
           }
@@ -11177,9 +11176,8 @@ function makeArray( obj ) {
                         
             $lazy.css('visibility','hidden');
             $slideElement.append($spinner);            
-            imagesLoaded($lazy, function() {$spinner.remove();$lazy.css('visibility','visible');console.log($slideElement);});
+            imagesLoaded($lazy, function() {$spinner.remove();$lazy.css('visibility','visible');});
             var $load = $lazy.attr("data-src");
-            console.log($load);
             $lazy.attr("src",$load).removeClass("lazy");
         }
       });
@@ -11198,5 +11196,47 @@ function makeArray( obj ) {
       });     
      });
   }
+
+  var $spinning_container = $('.spinning-container');
+  if ($spinning_container.length) {
+    var images = $spinning_container.children();
+    $spinning_container.height(images[0].height);
+    var $new_width = -$(images[0]).width() / 2;
+    var $new_height = -$(images[0]).height() / 2 + 100;
+    var f = function addThatNewsPage(elem) {
+      elem.css("display", "block");
+      elem.css("margin-top",$new_height + "px");
+      elem.css("margin-left",$new_width + "px");
+      elem.attr("src",elem.data("src"));
+      $spinning_container.append(elem);
+    };    
+    f($(images[0]));
+    $.each(images, function(i) {
+      var $this = $(this);
+      var $offset = Math.floor((Math.random() * 200) + 1) + "px";
+      
+      $spinning_container.append($(images[0]));
+      // $this.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',   
+      //     function(e) {
+      //     if((i%2) === 0) {
+      //       $this.animate({"margin-left": "+=" + $offset});
+      //     } else {
+      //       $this.animate({"margin-left": "-=" + $offset});
+      //     }
+      // });
+      $this.on('click', function() {
+        if((i%2) === 0) {
+          $this.animate({"margin-left": "+=" + $offset});
+        } else {
+          $this.animate({"margin-left": "-=" + $offset});
+        }
+        var idx = (i + 1) % images.size();
+        var elem = $(images[idx]);
+        f(elem);
+      });
+    });
+  }
+
+
   
 })(jQuery);

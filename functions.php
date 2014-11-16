@@ -266,6 +266,21 @@ function parse_gallery_shortcode($atts) {
 			}
 		}
 		$output .= '</ul></div>';
+    } elseif ( $gallery_type === 'spinning') {
+    	$output .= '<div class="spinning-container">';
+    	foreach ($images as $idx => $image) {
+			$large_img = wp_get_attachment_image_src( $image->ID, 'large');
+			
+			//only load first, rest is lazy
+			 if ($idx == 0) {
+				$output .= '<img class="spinning" src="' . $large_img[0] .'" />';
+			 } else {
+			 	$output .= '<img class="spinning" style="display:none;" src="" data-src="' . $large_img[0] . '"'
+			 	. ' style="width:' . $large_img[1] . 'px;height:' . $large_img[2] .'px;" />';				
+			 }
+			 
+		}
+		$output.= '</div>';
     }
 
     return $output;
@@ -297,6 +312,7 @@ add_action('print_media_templates', function(){
 	    <option value="flipbook"> flipbook </option> 
 	    <option value="bxslider"> bxslider </option>
 	    <option value="cuboid"> cuboid </option>
+	    <option value="spinning">spinning</option>
 	  </select>
 	</label>
 </script>

@@ -55,7 +55,8 @@ module.exports = function( grunt ) {
 					"screen": true,
 					"imagesLoaded": true,
 					"lazyload": true,
-					"alert": true
+					"alert": true,
+					"setTimeout": true
 				}
 			}		
 		},

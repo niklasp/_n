@@ -326,3 +326,48 @@ footer {
         -webkit-transform: scale(1.0);
     }
 }
+
+/* spinning newspaper images */
+img.spinning {
+    position: absolute;
+    max-height: 500px;
+    width: auto;
+    top: 50%;
+    left:50%;
+    z-index: 11;
+    opacity:1;
+
+    /* Configure the animation for Firefox */
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration:1s;
+    -moz-animation-name:spin;
+    -moz-animation-timing-function:linear;
+
+    /* Configure it for Chrome and Safari */
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration:1s;
+    -webkit-animation-name:spin;
+    -webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes spin{
+    0%{
+        opacity:0.2;
+        -webkit-transform:scale(0.2) rotate(0deg);
+    }
+    100%{
+        opacity:1;
+        -webkit-transform:scale(1) rotate(1090deg);
+    }
+}
+
+@-moz-keyframes spin{
+    0%{
+        opacity:0.2;
+        -moz-transform:scale(0.2) rotate(0deg);
+    }
+    100%{
+        opacity:1;
+        -moz-transform:scale(1) rotate(1090deg);
+    }
+}
