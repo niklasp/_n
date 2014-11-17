@@ -360,7 +360,6 @@ function _n_analytics_code() {
 	}
 }
 add_action( 'wp_footer', '_n_analytics_code' );
-
 function _n_webmaster_tag() {
 	if (get_option("_n_gwt_id")) {
 		$output = '<meta name="google-site-verification" content="%s" />';
