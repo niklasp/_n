@@ -11201,8 +11201,12 @@ function makeArray( obj ) {
   if ($spinning_container.length) {
     var images = $spinning_container.children();
     $spinning_container.height(images[0].height);
-    var $new_width = -$(images[0]).width() / 2;
-    var $new_height = -$(images[0]).height() / 2 + 100;
+    var $new_width, $new_height;
+    imagesLoaded($(images[0]), function() {
+      $new_width = -$(images[0]).width() / 2;
+      $new_height = -$(images[0]).height() / 2 + 100;
+      f($(images[0]));
+    });
     var f = function addThatNewsPage(elem) {
       elem.css("display", "block");
       elem.css("margin-top",$new_height + "px");
@@ -11210,12 +11214,12 @@ function makeArray( obj ) {
       elem.attr("src",elem.data("src"));
       $spinning_container.append(elem);
     };    
-    f($(images[0]));
     $.each(images, function(i) {
       var $this = $(this);
+      var $image = $(images[i]);
       var $offset = Math.floor((Math.random() * 200) + 1) + "px";
-      
-      $spinning_container.append($(images[0]));
+
+      $spinning_container.append($image);
       // $this.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',   
       //     function(e) {
       //     if((i%2) === 0) {
@@ -11232,7 +11236,9 @@ function makeArray( obj ) {
         }
         var idx = (i + 1) % images.size();
         var elem = $(images[idx]);
-        f(elem);
+        imagesLoaded(elem,function() {
+          f(elem);
+        });
       });
     });
   }
