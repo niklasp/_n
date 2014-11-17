@@ -371,3 +371,8 @@ img.spinning {
         -moz-transform:scale(1) rotate(1090deg);
     }
 }
+.next-image, .previous-image {
+    font-size:25px; 
+}
+.next-image { position:fixed;right:0;margin-right:20px;top:50%;}
+.previous-image{ position:fixed;left:0;margin-left:20px;top:50%;}

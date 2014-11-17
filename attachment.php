@@ -9,7 +9,6 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
 		<?php if (wp_attachment_is_image($post->id)) {
 						
 						$att_image = wp_get_attachment_image_src( $post->id, array(700,570));
@@ -23,8 +22,16 @@ get_header(); ?>
 
 						?>
 						<div class="attachment-container">
+							<nav id="image-navigation" class="navigation image-navigation">
+							                <div class="nav-links">
+							                
+							                
+							                </div><!-- .nav-links -->
+									</nav><!-- #image-navigation -->							
 							<div class="attachment">
+								<?php previous_image_link( false, '<div class="previous-image">' . __( '<', '$text_domain' ) . '</div>' ); ?>
 								<img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>"  class="attachment-medium" alt="<?php $post->post_excerpt; ?>" />
+								<?php next_image_link( false, '<div class="next-image">' . __( '>', '$text_domain' ) . '</div>' ); ?>
 								<p><b><?php echo $image_title . '</b> '; ?><?php if(!empty($caption)) echo ', ' . $caption; ?></p>
 							</div>
 					</div>
@@ -34,9 +41,8 @@ get_header(); ?>
 		if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
 			the_post_thumbnail();
 		} 
-		?>
+		?>		
 		<?php the_content(); ?>
-
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
