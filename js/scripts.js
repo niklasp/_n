@@ -11204,7 +11204,7 @@ function makeArray( obj ) {
     var $new_width, $new_height;
     imagesLoaded($(images[0]), function() {
       $new_width = -$(images[0]).width() / 2;
-      $new_height = -$(images[0]).height() / 2 + 100;
+      $new_height = -$(images[0]).height() / 2 + 50;
       f($(images[0]));
     });
     var f = function addThatNewsPage(elem) {
