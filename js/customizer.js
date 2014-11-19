@@ -33,4 +33,15 @@
 			}
 		} );
 	} );
+	wp.customize( '_n_header_style', function( value ) {
+		value.bind(function(to) {
+			if ('fixed' === to) {
+				$('#masthead').css('position','fixed');
+				$('#content').css('padding-top','100px');
+			} else {
+				$('#masthead').css('position','unset');
+				$('#content').css('padding-top','0');
+			}
+		});
+	} );
 } )( jQuery );

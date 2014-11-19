@@ -11075,17 +11075,22 @@ function makeArray( obj ) {
 ;( function($) {
 	'use strict';
 
+  /*
+  adjusting content to fixed(!) header height
+   */
   function content_padding() {
     //set the content padding according to the menu height
     var $header = $('#masthead');
     var $header_height = $header.height();
     $('#content').css("padding-top", $header_height);    
   }
-
-  content_padding();
-
-  $(window).on('resize', function() {
+  if ($('#masthead').hasClass('fixed')) {
     content_padding();
+  }
+  $(window).on('resize', function() {
+    if ($('#masthead').hasClass('fixed')) {
+      content_padding();
+    }
   });
 
 	var $container = $('.gallery-container');

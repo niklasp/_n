@@ -360,6 +360,7 @@ function _n_analytics_code() {
 	}
 }
 add_action( 'wp_footer', '_n_analytics_code' );
+
 function _n_webmaster_tag() {
 	if (get_option("_n_gwt_id")) {
 		$output = '<meta name="google-site-verification" content="%s" />';
@@ -367,3 +368,11 @@ function _n_webmaster_tag() {
 	}
 }
 add_action( 'wp_head', '_n_webmaster_tag');
+
+/**
+ * Adds the Customize page to the WordPress admin area
+ */
+function _n_customizer_menu() {
+    add_theme_page( 'Customize', 'Customize', 'edit_theme_options', 'customize.php' );
+}
+add_action( 'admin_menu', '_n_customizer_menu' );
