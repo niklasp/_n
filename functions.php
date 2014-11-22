@@ -77,8 +77,8 @@ endif; // _n_setup
 add_action( 'after_setup_theme', '_n_setup' );
 
 function _n_init() {
-	add_image_size( '_n_500', 500 );
-	add_image_size( '_n_700', 700 );
+	add_image_size( '_n_500', 500, 500 );
+	add_image_size( '_n_700', 700, 700 );
 }
 add_action('init','_n_init');
 
