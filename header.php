@@ -21,37 +21,53 @@
 <body <?php body_class(); ?>>
 <div class="container">
 <div id="page" class="hfeed site">
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<?php if (get_header_image()) { ?>
-					<img src="<?php header_image(); ?>" />
-				<?php } else {
-					bloginfo( 'name' );
-				} ?>
-			</a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+	<?php $header_style = get_theme_mod('_n_header_style', 'scroll');
+	if ('fixedonscroll' == $header_style) {
+		//add another header so that the header below is only shown on scroll
+		//you can add your bigger size super header here
+		?> 
+		<header id="masthead" class="site-header" role="banner">
+			<div class="site-branding">
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<?php if (get_header_image()) { ?>
+						<img src="<?php header_image(); ?>" />
+					<?php } else {
+						bloginfo( 'name' );
+					} ?>
+				</a></h1>
+				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+			</div>
+			<nav id="site-navigation" class="" role="navigation">
+				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', '_n' ); ?></a>
+				<?php wp_nav_menu( array( 
+				'theme_location' => 'primary', 
+				'container' => '',
+				// 'menu_class' => 'simple-menu') );
+				'menu_class' => 'menu-right') ); ?>
+			</nav><!-- #site-navigation -->
+		</header><!-- #masthead -->
+		<?php
+	} ?>
+
+	<header id="ha-header" class="ha-header ha-header-show">
+		<div class="ha-header-perspective">
+			<div class="ha-header-front">
+				<h1><span><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<?php if (get_header_image()) { ?>
+						<img src="<?php header_image(); ?>" style="width:200px;" />
+					<?php } else {
+						bloginfo( 'name' );
+					} ?>
+				</a></span></h1>
+				<nav>
+					<?php wp_nav_menu( array( 
+					'theme_location' => 'primary', 
+					'container' => '',
+					// 'menu_class' => 'simple-menu') );
+					'menu_class' => 'menu-top-fixed') ); ?>
+				</nav>
+			</div>
 		</div>
-
-		<nav id="site-navigation" class="" role="navigation">
-			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', '_n' ); ?></a>
-<!-- 			<div class="dropdown">
-			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-			    Navigation
-			    <span class="caret"></span>
-			  </button> -->
-			<?php /*wp_nav_menu( array( 
-			'theme_location' => 'primary', 
-			'walker' => new Walker_Button_Menu(),
-			'container' => '',
-			'menu_class' => 'dropdown-menu' ) ); */?>
-			<?php wp_nav_menu( array( 
-			'theme_location' => 'primary', 
-			'container' => '',
-			'menu_class' => 'inline-menu') ); ?>
-<!-- 		</div> -->
-
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+	</header>
 
 	<div id="content" class="site-content">

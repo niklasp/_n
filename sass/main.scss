@@ -63,7 +63,6 @@ img.full {
 }
 #masthead {
 	margin: 5px 0 20px 0;
-    position: fixed;
     width: 100%;
     z-index: 10;
     background: #fff;
@@ -104,13 +103,53 @@ footer {
 .site-title {
 	margin-bottom: 20px;
 }
-.inline-menu {
+
+.menu-right {
+    list-style: none;
+    float: right;
+    text-align: right;
+    padding-right: 30px;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
+}
+.menu-right > li {
+    position: relative;
+}
+.menu-right .sub-menu .hidden{
+    visibility: hidden;
+    pointer-events: none;
+}
+.menu-right .sub-menu {
+    position:absolute;
+    list-style: none;    
+    top: 100%;
+    left: 50%;
+    text-align: left;
+    margin: 0 0 0 -43px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;  
+}
+.menu-right > li > a, .menu-right > li{
+    display: inline-block;
+}
+.menu-right > .menu-item-has-children {
+    vertical-align: top;
+}
+
+.simple-menu {
     
 }
-.inline-menu ul {
+.simple-menu ul {
     list-style: none;
 }
-.inline-menu a{
+.simple-menu .page_item {
+    display:inline-block;
+}
+.simple-menu a{
     text-decoration: none;
     display: inline-block;
     color: #03c;
@@ -122,24 +161,185 @@ footer {
     color: #000;
 }
  
-.inline-menu a:hover {
+.simple-menu a:hover {
     -webkit-transform: scale(1.5,1.5);
     -moz-transform: scale(1.5,1.5);
     -o-transform: scale(1.5,1.5);
     -ms-transform: scale(1.5,1.5);
     transform: scale(1.5,1.5);
 }
-.inline-menu li > ul {
+.simple-menu li > ul {
     margin: 0;
 }
-.inline-menu > li, .inline-menu .sub-menu > li {
+.simple-menu > li, .simple-menu .sub-menu > li {
     display: inline;
 }
-.inline-menu .sub-menu {
+.simple-menu .sub-menu {
     display: inline;
 }
-.inline-menu .sub-menu > li {
+.simple-menu .sub-menu > li {
     font-size:80%;
+}
+.admin-bar .ha-header {
+    top: 30px !important;
+}
+.ha-header {
+    position: fixed;
+    top: 0px;
+    height: 180px;
+    width: inherit;
+    padding: 0px;
+    z-index: 50;
+    transform: translateY(-100%);
+    transition: all 0.5s ease 0s;
+}
+.ha-header-show {
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);    
+    transform: translateY(0%);
+}
+.ha-header-perspective {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    -webkit-perspective: 1100px;
+    -moz-perspective: 1100px;
+    perspective: 1100px;
+    -webkit-perspective-origin: 50% 0;
+    -moz-perspective-origin: 50% 0;
+    perspective-origin: 50% 0;
+}
+
+.ha-header-perspective > div {
+    background: #fff;
+    text-align: left;
+    height: 50%;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    text-align: justify;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+    overflow: hidden;
+}
+
+.ha-header-front {
+    z-index: 2;
+    -webkit-transform-origin: 50% 100%;
+    -moz-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    overflow: visible !important;
+}
+/* Justify inline-block elements (h1 on left side, nav on right) */
+.ha-header-perspective > div::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+
+.ha-header h1:before, .ha-header nav:before {
+    content: "";
+    height: 100%;
+}
+/* Text styling */
+.ha-header h1,
+.ha-header h1::before,
+.ha-header h1 span,
+.ha-header nav,
+.ha-header nav::before {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+.ha-header h1 {
+    font-weight: 300;
+    margin: 0;
+    padding: 0 1em 0 0;
+    color: #2d383f;
+    cursor: default;
+    height: 100%;
+    z-index: 1;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.ha-header h1::after {
+    content: '';
+    width: 100px;
+    height: 96px;
+    background: #fff;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    box-shadow: inset 0 8px #2d383f, inset 0 16px #fff, inset 0 24px #2d383f, inset 0 32px #fff, inset 0 40px #2d383f, inset 0 48px #fff, inset 0 56px #2d383f;
+    opacity: 0;
+    border: 20px solid #fff;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+.ha-header a {
+    text-decoration: none;
+    color: #000;
+}
+.ha-header ul {
+    list-style: none;
+    margin: 0px 0px 1.5em 0em;
+}
+.ha-header nav li {
+    display: inline-block;
+}
+.ha-header nav li:hover {
+    border-left: 2px solid #ddd;
+    margin-left: -2px;
+}
+.ha-header nav li a {
+    display: inline-block;
+    letter-spacing: 1px;
+    padding: 0.2em 0.4em;
+    margin: 0.2em 0.4em 0;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+}
+.ha-header .sub-menu {
+  padding: 0;
+  position: absolute;
+  width: 150px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  border-left: 2px solid #999 !important;
+  margin-left: -2px;
+  -webkit-transiton: opacity 0.4s;
+  -moz-transition: opacity 0.4s;
+  -ms-transition: opacity 0.4s;
+  -o-transition: opacity 0.4s;
+  -transition: opacity 0.4s;
+}
+.ha-header .sub-menu li { 
+  display: block; 
+  background: #fff;
+
+}
+.ha-header .sub-menu li:hover { 
+    border-left: 2px solid #ddd;
+    margin-left: -2px;
+}
+.ha-header ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 //masonry styles

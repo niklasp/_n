@@ -6,15 +6,16 @@
    */
   function content_padding() {
     //set the content padding according to the menu height
-    var $header = $('#masthead');
+    var $header = $('.ha-header');
     var $header_height = $header.height();
-    $('#content').css("padding-top", $header_height);    
+    $('#content').css("padding-top", $header_height);
   }
   if ($('#masthead').hasClass('fixed')) {
     content_padding();
   }
   $(window).on('resize', function() {
-    if ($('#masthead').hasClass('fixed')) {
+    $('.ha-header').width($('body > .container').width()); 
+    if ($('.ha-header').hasClass('fixed')) {
       content_padding();
     }
   });
@@ -61,9 +62,29 @@
           $('.item').removeClass('large');
           $this.addClass('large');
           $container.masonry();
-      
     }
   });
+
+  //menus
+  $('.menu-right .sub-menu li').addClass('hidden');
+  $('.menu-right .menu-item-has-children').on('click', function(e) {
+    e.preventDefault();
+    $('.sub-menu > li', this).toggleClass('hidden');
+    $('.sub-menu > li', this).fadeIn('slow');
+  });
+
+
+  var $window = $(window);
+  var nav = $('.ha-header');
+  $window.scroll(function(){
+      if ($window.scrollTop() >= 300) {
+         nav.addClass('ha-header-show');
+      }
+      else {
+         nav.removeClass('ha-header-show');
+      }
+  });
+  $('.ha-header').width($('body > .container').width());
 
   //flipbook
   

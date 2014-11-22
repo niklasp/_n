@@ -39,6 +39,7 @@ function _n_customize_register( $wp_customize ) {
 			'choices' => array(
 				'fixed' => 'Fixed',
 				'scroll' => 'Scroll',
+				'fixedonscroll' => 'Scroll + Fixed on Scroll',
 			),
 	    )
 	); 	
@@ -49,16 +50,26 @@ add_action( 'customize_register', '_n_customize_register' );
  * make the stylechanges appear on the site
  */
 function _n_header_output() {
-	$header_position = get_theme_mod('_n_header_style', 'fixed');
+	$header_position = get_theme_mod('_n_header_style', 'scroll');
 ?>
 <!--Customizer CSS--> 
 <style type="text/css">
 	<?php if ($header_position == 'scroll') { ?>
-	#masthead {
+	.ha-header {
 		position: unset;
+		height: 90px;
+		transform: translateY(0);
 	}
 	#content {
 		padding-top: 0;
+	}
+	<?php } else if ($header_position == 'fixedonscroll') { ?>
+	#content {
+		padding-top: 0;
+	}
+	<?php } else if ($header_position == 'fixed') { ?>
+	.ha-header {		
+		transform: translateY(0);
 	}
 	<?php } ?>
 </style>
