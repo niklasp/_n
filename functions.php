@@ -72,11 +72,15 @@ function _n_setup() {
 		'default-image' => '',
 	) ) );
 
-	add_image_size( '_n_500', 500 );
-	add_image_size( '_n_700', 500 );
 }
 endif; // _n_setup
 add_action( 'after_setup_theme', '_n_setup' );
+
+function _n_init() {
+	add_image_size( '_n_500', 500 );
+	add_image_size( '_n_700', 700 );
+}
+add_action('init','_n_init');
 
 /**
  * Register widgetized area and update sidebar with default widgets
@@ -200,7 +204,7 @@ function parse_gallery_shortcode($atts) {
     if (empty($gallery_type) || strpos($gallery_type,'masonry') !== false ) {
 
     	$gallery_columns = $atts['columns'];
-    	
+
     	switch ($gallery_columns) {
     		case 1:
     		case 2:
