@@ -200,7 +200,19 @@ function parse_gallery_shortcode($atts) {
     if (empty($gallery_type) || strpos($gallery_type,'masonry') !== false ) {
 
     	$gallery_columns = $atts['columns'];
-    	$image_size = ($gallery_columns > 2 ? 'medium' : 'large');
+    	
+    	switch ($gallery_columns) {
+    		case 1:
+    		case 2:
+    			$image_size = 'large';
+    			break;
+    		case 3:
+    		case 4:
+    			$image_size = '_n_500';
+    			break;
+    		default:
+    			$image_size = 'medium';
+    	}
 
       $output .= '<div class="gallery-container';
       if ($gallery_type === 'masonry_expand') {
