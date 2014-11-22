@@ -71,6 +71,9 @@ function _n_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
+
+	add_image_size( '_n_500', 500 );
+	add_image_size( '_n_700', 500 );
 }
 endif; // _n_setup
 add_action( 'after_setup_theme', '_n_setup' );
