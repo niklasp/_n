@@ -8,8 +8,8 @@
  */
 ?>
 
-	</div><!-- #content -->
-
+		</div><!-- #content -->
+	</div><!-- #page -->
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
 			&copy; 2014 <?php bloginfo('name'); ?>
@@ -24,7 +24,6 @@
 	        ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
-</div><!-- #page -->
 </div><!-- .container -->
 
 <?php wp_footer(); ?>

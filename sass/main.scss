@@ -1,6 +1,10 @@
+html {
+    height: 100%;
+}
 body{
     font-family: Courier New;
     font-size: 16px;
+    height: 100%;
 }
 h1 {
     font-size: 25px;
@@ -31,9 +35,19 @@ img.full {
 .container { 
 	padding-left: 20px;
 	padding-right: 20px;
+    height: 100%;
+}
+#page {
+    min-height: 100%;
+    margin-bottom: -50px; 
 }
 #content {
     min-height: 500px;
+}
+#page:after {
+  content: "";
+  display: block;
+  height: 50px;
 }
 .btn-sub-menu {
     float: left;
@@ -93,6 +107,7 @@ img.full {
 
 footer {
     margin-bottom: 20px;
+    height: 30px;
 }
 .site-branding {
     width: 270px;
