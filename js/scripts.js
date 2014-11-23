@@ -11160,6 +11160,21 @@ function makeArray( obj ) {
   });
   $('.ha-header').width($('body > .container').width());
 
+  //attachment
+  /* align the label to the bottom (when image is done loading) 
+  and it is not a full width image */
+  $('.attachment-label.bottom').each(function() {
+    var $this = $(this);
+    imagesLoaded($(this), function() {
+      console.log($('.attachment-image').css('width'));
+      $this.css('margin-top', $('.attachment-image img').height()-$this.height());
+    });
+  });
+  var $att_container = $('.attachment-center-container');
+  imagesLoaded($att_container, function() {
+    $att_container.css('width',$('img',$att_container).width());
+  });
+
   //flipbook
   
   var $flipbook = $('.flipbook');

@@ -43,6 +43,25 @@ function _n_customize_register( $wp_customize ) {
 			),
 	    )
 	); 	
+	$wp_customize->add_setting(
+	    '_n_single_image_style',
+	    array(
+	        'default' => 'center',
+	    )
+	);
+	$wp_customize->add_control(
+		'_n_single_image_style',
+	    array(
+	    	'type' => 'select',
+	        'label' => 'Style of the single Image Page',
+	        'section' => '_n_section_one',
+			'choices' => array(
+				'left' => 'Image left',
+				'right' => 'Image right',
+				'center' => 'Image center',
+			),
+		)
+	);
 }
 add_action( 'customize_register', '_n_customize_register' );
 

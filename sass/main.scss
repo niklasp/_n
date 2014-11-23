@@ -1,5 +1,6 @@
 body{
     font-family: Courier New;
+    font-size: 16px;
 }
 h1 {
     font-size: 25px;
@@ -367,26 +368,34 @@ footer {
 .item > img {
     width: 100% !important;
     height: auto;
+    margin-bottom: 10px;
 }
 
 
 .item:hover{ cursor:pointer }
 
 .attachment-container {
-    padding: 40px 0 40px 0;
-    text-align: center;
+    padding: 40px 30px;
     position: relative;
 }
-.attachment {
+.attachment-image {
     margin: auto;
   left:0;
   right: 0;
   top: 0;
   bottom: 0;
 }
+.attachment-center-container {
+    margin: 0px auto;
+    width: auto;
+    display: block;
+}
+.attachment-container .col-xs-12 img, .attacment-container .col-sm-12 img, .attachment-center-container img {
+    margin-bottom: 3em;
+}
 
-.attachment img {
-    margin-bottom: 20px;
+.attachment-label span {
+    display: inline-block;
 }
 .flipbook-viewport .flipcontainer{
     width: 100%;
