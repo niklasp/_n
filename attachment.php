@@ -19,6 +19,26 @@ get_header(); ?>
 		$caption = $attachment[0]['caption'];
 		//$description = $image->post_content;
 		$style = get_theme_mod('_n_single_image_style','center');
+
+		$content = get_post_field('post_content', $post->post_parent);
+		$result;
+		preg_match_all('/\[gallery.*ids="(.*?)"/', $content, $ids, PREG_SET_ORDER);
+		foreach ($ids as $k => $the_ids) {
+			$arr = explode(",",$the_ids[1]);
+			if (in_array($post->ID, $arr)) {
+				$result = $arr;
+				break;
+			}
+		}
+
+		$current = array_search(get_the_ID(), $arr);
+		$prevID = $arr[$current-1];
+		$nextID = $arr[$current+1];
+
+		$next_url = isset($nextID) ? get_permalink($nextID) : NULL;
+		$prev_url = isset($prevID) ? get_permalink($prevID) : NULL;
+
+		echo ($next_url);		
 		?>
 
 		<?php if($style == 'left') { ?>
@@ -67,8 +87,12 @@ get_header(); ?>
 		<!-- image navigation -->
 		<nav id="image-navigation" class="navigation image-navigation col-xs-12">
             <div class="nav-links">
-				<?php previous_image_link( false, '<div class="previous-image">' . __( '<', '$text_domain' ) . '</div>' ); ?>            
-	            <?php next_image_link( false, '<div class="next-image">' . __( '>', '$text_domain' ) . '</div>' ); ?>
+            <?php if (isset($prev_url)) {?>
+				<a href="<?php echo $prev_url ?>"><div class="previous-image"><</div></a>
+			<?php } ?>
+            <?php if (isset($next_url)) {?>
+				<a href="<?php echo $next_url ?>"><div class="next-image">></div></a>
+			<?php } ?>
             </div><!-- .nav-links -->
 		</nav><!-- #image-navigation -->							
 		<?php } ?>
