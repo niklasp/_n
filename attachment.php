@@ -14,7 +14,6 @@ get_header(); ?>
 		$att_image = wp_get_attachment_image_src( $post->id, array(700,570));
 		$attachment[] = wp_prepare_attachment_for_js( $post->id );
 	  	
-		
 		$image_title = $attachment[0]['title'];
 		$caption = $attachment[0]['caption'];
 		//$description = $image->post_content;
@@ -30,6 +29,9 @@ get_header(); ?>
 				break;
 			}
 		}
+
+		$parent =  $post->post_parent;
+		echo $parent;
 
 		$current = array_search(get_the_ID(), $arr);
 		$prevID = $arr[$current-1];
