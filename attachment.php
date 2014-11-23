@@ -31,7 +31,6 @@ get_header(); ?>
 		}
 
 		$parent =  $post->post_parent;
-		echo $parent;
 
 		$current = array_search(get_the_ID(), $arr);
 		$prevID = $arr[$current-1];
