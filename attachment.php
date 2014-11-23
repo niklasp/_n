@@ -14,7 +14,7 @@ get_header(); ?>
 		$att_image = wp_get_attachment_image_src( $post->id, array(700,570));
 		$attachment[] = wp_prepare_attachment_for_js( $post->id );
 	  	
-		//var_dump($attachment[0]);
+		
 		$image_title = $attachment[0]['title'];
 		$caption = $attachment[0]['caption'];
 		//$description = $image->post_content;
@@ -38,7 +38,6 @@ get_header(); ?>
 		$next_url = isset($nextID) ? get_permalink($nextID) : NULL;
 		$prev_url = isset($prevID) ? get_permalink($prevID) : NULL;
 
-		echo ($next_url);		
 		?>
 
 		<?php if($style == 'left') { ?>
