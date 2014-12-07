@@ -19,6 +19,28 @@
 </head>
 
 <body <?php body_class(); ?>>
+	<header id="ha-header" class="ha-header ha-header-show">
+		<div class="container">
+		<div class="ha-header-perspective">
+			<div class="ha-header-front">
+				<h1><span><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<?php if (get_header_image()) { ?>
+						<img src="<?php header_image(); ?>" style="width:200px;" />
+					<?php } else {
+						bloginfo( 'name' );
+					} ?>
+				</a></span></h1>
+				<nav>
+					<?php wp_nav_menu( array( 
+					'theme_location' => 'primary', 
+					'container' => '',
+					// 'menu_class' => 'simple-menu') );
+					'menu_class' => 'menu-top-fixed') ); ?>
+				</nav>
+			</div>
+		</div>
+		</div>
+	</header>	
 <div class="container">
 <div id="page" class="hfeed site">
 	<?php $header_style = get_theme_mod('_n_header_style', 'scroll');
@@ -48,26 +70,5 @@
 		</header><!-- #masthead -->
 		<?php
 	} ?>
-
-	<header id="ha-header" class="ha-header ha-header-show">
-		<div class="ha-header-perspective">
-			<div class="ha-header-front">
-				<h1><span><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-					<?php if (get_header_image()) { ?>
-						<img src="<?php header_image(); ?>" style="width:200px;" />
-					<?php } else {
-						bloginfo( 'name' );
-					} ?>
-				</a></span></h1>
-				<nav>
-					<?php wp_nav_menu( array( 
-					'theme_location' => 'primary', 
-					'container' => '',
-					// 'menu_class' => 'simple-menu') );
-					'menu_class' => 'menu-top-fixed') ); ?>
-				</nav>
-			</div>
-		</div>
-	</header>
 
 	<div id="content" class="site-content">

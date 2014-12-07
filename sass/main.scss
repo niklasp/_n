@@ -203,11 +203,12 @@ footer {
     position: fixed;
     top: 0px;
     height: 80px;
-    width: inherit;
+    width: 100%;
     padding: 0px;
     z-index: 50;
     transform: translateY(-100%);
     transition: all 0.5s ease 0s;
+    background: #fff;
 }
 .ha-header-show {
     -webkit-transform: translateY(-50%);
@@ -227,7 +228,6 @@ footer {
 }
 
 .ha-header-perspective > div {
-    background: #fff;
     text-align: left;
     height: 100%;
     width: 100%;
@@ -272,7 +272,7 @@ footer {
     text-align: left;
 }
 .ha-header nav {
-    background: #fff;
+    
 }
 .ha-header h1 {
     font-weight: 300;

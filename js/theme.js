@@ -14,7 +14,6 @@
     content_padding();
   }
   $(window).on('resize', function() {
-    $('.ha-header').width($('body > .container').width()); 
     if ($('.ha-header').hasClass('fixed')) {
       content_padding();
     }
@@ -84,7 +83,6 @@
          nav.removeClass('ha-header-show');
       }
   });
-  $('.ha-header').width($('body > .container').width());
 
   //attachment
   /* align the label to the bottom (when image is done loading) 

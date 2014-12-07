@@ -5,6 +5,26 @@
  * @package _n
  */
 
+function check_number( $value ) {
+    $value = (int) $value; // Force the value into integer type.
+    return ( 0 <= $value && $value <= 100) ? $value : 1;
+}
+
+function hex2rgb_alpha($hex, $alpha) {
+   $hex = str_replace("#", "", $hex);
+
+   if(strlen($hex) == 3) {
+      $r = hexdec(substr($hex,0,1).substr($hex,0,1));
+      $g = hexdec(substr($hex,1,1).substr($hex,1,1));
+      $b = hexdec(substr($hex,2,1).substr($hex,2,1));
+   } else {
+      $r = hexdec(substr($hex,0,2));
+      $g = hexdec(substr($hex,2,2));
+      $b = hexdec(substr($hex,4,2));
+   }
+   $rgba = array($r, $g, $b, $alpha);
+   return implode(",", $rgba); // returns the rgba values separated by commas
+}
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
  *
@@ -23,6 +43,45 @@ function _n_customize_register( $wp_customize ) {
             'priority' => 0,
         )
     );
+
+    $wp_customize->add_setting(
+    	'_n_header_bg_color',
+    	array(
+    		'default' => '#ffffff',
+    		'sanitize_callback' => 'sanitize_hex_color',
+    		'transport' => 'postMessage',
+    	)
+    );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( 
+		$wp_customize, 
+		'_n_header_bg_color_control', 
+		array(
+			'label'      => 'Header Background Color',
+			'section'    => '_n_section_one',
+			'settings'   => '_n_header_bg_color',
+		)
+	));
+
+
+	$wp_customize->add_setting(
+    	'_n_header_bg_opacity',
+    	array(
+    		'default' => '100',
+    		'sanitize_callback' => 'check_number',
+    		'transport' => 'postMessage',
+    	)
+    );
+
+	$wp_customize->add_control(
+		'_n_header_bg_opacity_control', 
+		array(
+			'label'      => 'Header Background Opacity (0-100)',
+			'section'    => '_n_section_one',
+			'settings'   => '_n_header_bg_opacity',
+		)
+	);     
+
 	$wp_customize->add_setting(
 	    '_n_header_style',
 	    array(
@@ -91,6 +150,8 @@ function _n_header_output() {
 		transform: translateY(0);
 	}
 	<?php } ?>
+	.ha-header, .ha-header .sub-menu li { background: rgba(<?php echo hex2rgb_alpha(get_theme_mod( '_n_header_bg_color' ),get_theme_mod( '_n_header_bg_opacity' )/100.0); ?>); }
+
 </style>
 <!--/Customizer CSS-->
 <?php

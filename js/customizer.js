@@ -43,5 +43,18 @@
 				$('#content').css('padding-top','0');
 			}
 		});
-	} );
+	});
+	wp.customize( '_n_header_bg_color', function( value ) {
+		value.bind(function(to) {
+			$('.ha-header').css('background',to);
+			$('.ha-header .sub-menu li').css('background',to);
+		});
+	});
+	wp.customize( '_n_header_bg_opacity', function( value ) {
+		value.bind(function(to) {
+			$('.ha-header').css('opacity',to);
+			$('.ha-header .sub-menu li').css('opacity',to);
+		});
+	});		
+
 } )( jQuery );
