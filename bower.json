@@ -26,6 +26,7 @@
     "imagesloaded": "~3.1.8",
     "bxslider-4": "~4.1.2",
     "jquery-cuboid": "https://github.com/niklasp/jquery-cuboid.git",
-    "jquery.lazyload": "~1.9.3"
+    "jquery.lazyload": "~1.9.3",
+    "jquery-zoom": "~1.7.13"
   }
 }

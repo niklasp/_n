@@ -121,6 +121,20 @@ function _n_customize_register( $wp_customize ) {
 			),
 		)
 	);
+	$wp_customize->add_setting(
+	    '_n_single_image_zoom',
+	    array(
+	        'default' => 'false',
+	    )
+	);
+	$wp_customize->add_control(
+		'_n_single_image_zoom',
+	    array(
+	    	'type' => 'checkbox',
+	        'label' => 'is single image zoomed?',
+	        'section' => '_n_section_one',
+		)
+	);	
 }
 add_action( 'customize_register', '_n_customize_register' );
 

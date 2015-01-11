@@ -15,6 +15,7 @@ module.exports = function( grunt ) {
 		'bower_components/imagesloaded/imagesloaded.pkgd.js',
 		'bower_components/bxslider-4/jquery.bxslider.js',
 		'bower_components/jquery-cuboid/src/jquery.cuboid.js',
+		'bower_components/jquery-zoom/jquery.zoom.js',
 		'js/theme.js'
 
 	];    

@@ -656,3 +656,10 @@ img.spinning {
 }
 .next-image { position:fixed;right:0;margin-right:20px;top:50%;}
 .previous-image{ position:fixed;left:0;margin-left:20px;top:50%;}
+#n-zoom {
+    display: inline-block;
+    position: relative;
+}
+#n-zoom img {
+    display: block;
+}

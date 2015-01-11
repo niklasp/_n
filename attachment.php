@@ -12,6 +12,7 @@ get_header(); ?>
 		<?php if (wp_attachment_is_image($post->id)) {
 						
 		$att_image = wp_get_attachment_image_src( $post->id, array(700,570));
+		$att_image_large = wp_get_attachment_image_src( $post->id, array(1500,1500));
 		$attachment[] = wp_prepare_attachment_for_js( $post->id );
 	  	
 		$image_title = $attachment[0]['title'];
@@ -39,12 +40,16 @@ get_header(); ?>
 		$next_url = isset($nextID) ? get_permalink($nextID) : NULL;
 		$prev_url = isset($prevID) ? get_permalink($prevID) : NULL;
 
+		$image = '<img data-large-img="' . $att_image_large[0] .'" src="' . $att_image[0] . '" width="' . $att_image[1] . '" height="' . $att_image[2] . '"  class="attachment-medium" alt="' . $post->post_excerpt .' " />';
+		if (get_theme_mod( '_n_single_image_zoom', false )) {
+			$image = '<span id="n-zoom">' . $image . '</span>';
+		}
 		?>
 
 		<?php if($style == 'left') { ?>
 		<div class="attachment-container row hidden-xs">
 			<div class="attachment-image col-xs-12 col-sm-9">
-				<img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>"  class="attachment-medium" alt="<?php $post->post_excerpt; ?>" />
+				<?php echo $image; ?>
 			</div>
 			<div class="attachment-label bottom col-xs-6 col-sm-3">
 				<span><b><?php echo $image_title . '</b> '; ?><?php if(!empty($caption)) echo ', ' . $caption; ?></span>
@@ -58,7 +63,7 @@ get_header(); ?>
 				<span><b><?php echo $image_title . '</b> '; ?><?php if(!empty($caption)) echo ', ' . $caption; ?></span>
 			</div>
 			<div class="attachment-image col-xs-12 col-sm-9 text-right">
-				<img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>"  class="attachment-medium" alt="<?php $post->post_excerpt; ?>" />
+				<?php echo $image; ?>
 			</div>
 		</div>	
 
@@ -67,7 +72,7 @@ get_header(); ?>
 		<div class="attachment-container center row hidden-xs">
 			<div class="attachment-image col-xs-12">
 				<div class="attachment-center-container">
-				<img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>"  class="attachment-medium" alt="<?php $post->post_excerpt; ?>" />
+				<?php echo $image; ?>
 				<p><b><?php echo $image_title . '</b> '; ?><?php if(!empty($caption)) echo ', ' . $caption; ?></p>
 				</div>
 			</div>

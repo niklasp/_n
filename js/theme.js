@@ -162,6 +162,13 @@
      });
   }
 
+  //zoom
+  var $zoom = $('#n-zoom');
+  if ($zoom.length) {
+    var $large = $('img',$zoom).data('large-img');
+    $zoom.zoom({url:$large,on:'click'});
+  }
+
   var $spinning_container = $('.spinning-container');
   if ($spinning_container.length) {
     var images = $spinning_container.children();
