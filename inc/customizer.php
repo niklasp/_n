@@ -150,7 +150,7 @@ function _n_header_output() {
 		transform: translateY(0);
 	}
 	<?php } ?>
-	.ha-header, .ha-header .sub-menu li { background: rgba(<?php echo hex2rgb_alpha(get_theme_mod( '_n_header_bg_color' ),get_theme_mod( '_n_header_bg_opacity' )/100.0); ?>); }
+	.navbar-default { background: rgba(<?php echo hex2rgb_alpha(get_theme_mod( '_n_header_bg_color' ),get_theme_mod( '_n_header_bg_opacity' )/100.0); ?>); }
 
 </style>
 <!--/Customizer CSS-->

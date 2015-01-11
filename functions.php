@@ -72,6 +72,9 @@ function _n_setup() {
 		'default-image' => '',
 	) ) );
 
+	// Register Custom Navigation Walker
+	require_once('inc/wp_bootstrap_navwalker.php');
+
 }
 endif; // _n_setup
 add_action( 'after_setup_theme', '_n_setup' );
@@ -395,3 +398,35 @@ function _n_customizer_menu() {
     add_theme_page( 'Customize', 'Customize', 'edit_theme_options', 'customize.php' );
 }
 add_action( 'admin_menu', '_n_customizer_menu' );
+
+/**
+ * Add Photographer Name and URL fields to media uploader
+ *
+ * @param $form_fields array, fields to include in attachment form
+ * @param $post object, attachment record in database
+ * @return $form_fields, modified form fields
+ */
+ 
+function be_attachment_field_credit( $form_fields, $post ) {
+	$form_fields['n-image-size'] = array(
+		'label' => 'Image Size',
+		'input' => 'html',
+		'helps' => 'Size relative to column width',
+        'options' => array(
+            'portrait' => __( 'portrtait', '_n' ),
+            'landscape' => __( 'landscape', '_n' )
+        ),
+        'application' => 'image',
+        'exclusions'   => array( 'audio', 'video' )		
+	);
+
+    $form_fields['n-image-size']['html'] = "<select name='attachments[{$post->ID}][profile_image_select]'>";
+    $form_fields['n-image-size']['html'] .= '<option '.selected(get_post_meta($post->ID, "_profile_image_select", true), 'default',false).' value="2">x2</option>';
+    $form_fields['n-image-size']['html'] .= '<option '.selected(get_post_meta($post->ID, "_profile_image_select", true), 'default',false).' value="3">x3</option>';
+    $form_fields['n-image-size']['html'] .= '</select>';
+
+	return $form_fields;
+}
+
+add_filter( 'attachment_fields_to_edit', 'be_attachment_field_credit', 10, 2 );
+?>

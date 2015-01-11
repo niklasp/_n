@@ -19,7 +19,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-	<header id="ha-header" class="ha-header ha-header-show">
+<!-- 	<header id="ha-header" class="ha-header ha-header-show">
 		<div class="container">
 		<div class="ha-header-perspective">
 			<div class="ha-header-front">
@@ -40,7 +40,37 @@
 			</div>
 		</div>
 		</div>
-	</header>	
+	</header>	 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="navbar-brand" href="<?php echo home_url(); ?>">
+                <?php bloginfo('name'); ?>
+            </a>
+    </div>
+
+        <?php
+            wp_nav_menu( array(
+                'menu'              => 'primary',
+                'theme_location'    => 'primary',
+                'depth'             => 2,
+                'container'         => 'div',
+                'container_class'   => 'collapse navbar-collapse',
+        'container_id'      => 'bs-example-navbar-collapse-1',
+                'menu_class'        => 'nav navbar-nav navbar-right',
+                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                'walker'            => new wp_bootstrap_navwalker())
+            );
+        ?>
+    </div>
+</nav>	
 <div class="container">
 <div id="page" class="hfeed site">
 	<?php $header_style = get_theme_mod('_n_header_style', 'scroll');
