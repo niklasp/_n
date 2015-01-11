@@ -83,10 +83,10 @@ get_header(); ?>
 		<!-- fallback for small screens -->
 		<div class="attachment-container row visible-xs">
 			<div class="attachment-image col-xs-12 ">
-				<img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>" class="attachment-medium" alt="<?php $post->post_excerpt; ?>" />
+				<?php echo $image; ?>
 			</div>
 			<div class="attachment-label bottom col-xs-12">
-				<span><b><?php echo $image_title . '</b> '; ?><?php if(!empty($caption)) echo ', ' . $caption; ?> awidn awiudnaiwund aiwudn aiwudn aiuwnd aiwund aiwund </span>
+				<span><b><?php echo $image_title . '</b> '; ?><?php if(!empty($caption)) echo ', ' . $caption; ?> </span>
 			</div>
 		</div>
 		<!-- image navigation -->
