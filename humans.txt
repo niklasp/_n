@@ -15,3 +15,7 @@
 /* SITE */
 	Created:  2014-10-17
 	Template: https://github.com/sennza/underscores-wp-theme
+
+/* USED BY */
+https://hanswinkler.gallery
+https://pablowalser.de
