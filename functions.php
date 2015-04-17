@@ -11,7 +11,6 @@
 if ( ! isset( $content_width ) ) {
 	$content_width = 640; /* pixels */
 }
-
 if ( ! function_exists( '_n_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
