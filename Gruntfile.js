@@ -16,6 +16,8 @@ module.exports = function( grunt ) {
 		'bower_components/bxslider-4/jquery.bxslider.js',
 		'bower_components/jquery-cuboid/src/jquery.cuboid.js',
 		'bower_components/jquery-zoom/jquery.zoom.js',
+		'bower_components/blueimp-gallery/js/blueimp-gallery.js',
+		'bower_components/blueimp-gallery/js/blueimp-gallery-indicator.js',
 		'js/theme.js'
 
 	];    
@@ -57,7 +59,8 @@ module.exports = function( grunt ) {
 					"imagesLoaded": true,
 					"lazyload": true,
 					"alert": true,
-					"setTimeout": true
+					"setTimeout": true,
+					"blueimp": true
 				}
 			}		
 		},

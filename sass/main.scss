@@ -663,3 +663,35 @@ img.spinning {
 #n-zoom img {
     display: block;
 }
+
+/* blueimp */
+.blueimp-gallery {
+    background: none rgba(255, 255, 255, 0.9) !important;    
+}
+
+.blueimp-gallery > .next, .blueimp-gallery > .prev, .blueimp-gallery > .close {
+    border: none;
+    color: #000;
+    background: none;
+    text-shadow: none;
+    font-size: 40px;
+    font-family: inherit;
+}
+
+.blueimp-gallery > .close:hover, .blueimp-gallery > .next:hover, .blueimp-gallery > .play-pause:hover, .blueimp-gallery > .prev:hover, .blueimp-gallery > .title:hover {
+    color: #aaa;
+    opacity: 1;
+}
+
+.blueimp-gallery > .slides > .slide > .slide-content{
+    padding-bottom: 60px;
+    padding-top: 10px;
+}
+
+.indicator > li {
+    background-size: 30px !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
