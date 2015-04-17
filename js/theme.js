@@ -47,6 +47,10 @@
   }
 
   $('.gallery-container .item').on('click',function(){
+    //return early if there is a lightbox attached
+    if ($('#blueimp-gallery').length) {
+      return;
+    }
     var $this = $(this);
     if ($this.hasClass('large') || !$this.parent().hasClass('gallery-container-expand')) {
       var $myurl = $(this).data('url');

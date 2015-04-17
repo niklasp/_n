@@ -226,6 +226,17 @@ function parse_gallery_shortcode($atts) {
       	$output .= ' gallery-container-expand';
       }
       $output .= '">'; 
+      if ($gallery_type === 'masonry_lightbox') {
+    	$output .= '<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+					    <div class="slides"></div>
+					    <h3 class="title"></h3>
+					    <a class="prev">‹</a>
+					    <a class="next">›</a>
+					    <a class="close">×</a>
+					    <a class="play-pause"></a>
+					    <ol class="indicator"></ol>
+					</div>';  	
+      }
       foreach ( $images as $idx=>$image ) {    
           $caption = $image->post_excerpt;
    
@@ -235,12 +246,20 @@ function parse_gallery_shortcode($atts) {
           $image_alt = get_post_meta($image->ID,'_wp_attachment_image_alt', true);
    
           // render your gallery here
+          $medium_img = wp_get_attachment_image_src( $image->ID, 'medium');
           $large_img = wp_get_attachment_image_src( $image->ID, 'large');
           
           $output .= '<div class="item item-' . $gallery_columns;
           //$output .= '" data-url="'.get_attachment_link( $image->ID ).'">' . preg_replace( '/(width|height)="\d*"\s/', "", wp_get_attachment_image($image->ID,$image_size,false,'datadata-large-url=' . $large_img[0])) . '</div>';
           $img_src = wp_get_attachment_image_src($image->ID,$image_size,false);
-          $output .= '" data-url="'.get_attachment_link( $image->ID ).'">' . preg_replace( '/(width|height)="\d*"\s/', "", '<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-original="' . $img_src[0] . '" data-large-url="' . $large_img[0] . '" />') . '</div>';
+          $output .= '" data-url="'.get_attachment_link( $image->ID ).'">'; 
+          if ($gallery_type === 'masonry_lightbox'){
+          	$output .= '<a href="' . $large_img[0] .'" data-gallery><img src="' . $medium_img[0] . '" /></a>';
+          } else {
+          	$output.= preg_replace( '/(width|height)="\d*"\s/', "", '<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-original="' 
+  				. $img_src[0] . '" data-large-url="' . $large_img[0] . '" />');
+          }
+          $output .= '</div>';
       }
       $output .= '</div>';      
 
@@ -351,6 +370,7 @@ add_action('print_media_templates', function(){
 	  <select data-setting="gallery_type">
 	    <option value="masonry"> masonry </option>
 	    <option value="masonry_expand"> masonry expand </option>      
+	    <option value="masonry_lightbox"> masonry lightbox </option>      
 	    <option value="flipbook"> flipbook </option> 
 	    <option value="bxslider"> bxslider </option>
 	    <option value="cuboid"> cuboid </option>

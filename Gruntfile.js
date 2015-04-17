@@ -18,6 +18,7 @@ module.exports = function( grunt ) {
 		'bower_components/jquery-zoom/jquery.zoom.js',
 		'bower_components/blueimp-gallery/js/blueimp-gallery.js',
 		'bower_components/blueimp-gallery/js/blueimp-gallery-indicator.js',
+		'bower_components/blueimp-gallery/js/jquery.blueimp-gallery.js',
 		'js/theme.js'
 
 	];    
