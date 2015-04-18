@@ -12884,7 +12884,8 @@ function makeArray( obj ) {
     });
 
 }));
-;( function($) {
+;/*jshint multistr: true */
+( function($) {
 	'use strict';
 
   /*
@@ -13055,6 +13056,16 @@ function makeArray( obj ) {
   //blueimp-gallery
   var $blueimp = $('#blueimp-gallery');
   if($blueimp.length) {
+    //first attach needed controls to body
+$('body').append('<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">\
+              <div class="slides"></div>\
+              <h3 class="title"></h3>\
+              <a class="prev">‹</a>\
+              <a class="next">›</a>\
+              <a class="close">×</a>\
+              <a class="play-pause"></a>\
+              <ol class="indicator"></ol>\
+          </div>');    
     document.getElementById('links').onclick = function (event) {
         event = event || window.event;
         var target = event.target || event.srcElement,

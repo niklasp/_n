@@ -244,6 +244,11 @@ function parse_gallery_shortcode($atts) {
           if($description == '') $description = $image->post_title;
    
           $image_alt = get_post_meta($image->ID,'_wp_attachment_image_alt', true);
+
+          $image_title = $image->post_title;
+          if($image->post_title !== '' && $image->post_excerpt !== '') {
+          	$image_title.= ', ' . $image->post_excerpt;
+          }
    
           // render your gallery here
           $medium_img = wp_get_attachment_image_src( $image->ID, 'medium');
@@ -254,7 +259,7 @@ function parse_gallery_shortcode($atts) {
           $img_src = wp_get_attachment_image_src($image->ID,$image_size,false);
           $output .= '" data-url="'.get_attachment_link( $image->ID ).'">'; 
           if ($gallery_type === 'masonry_lightbox'){
-          	$output .= '<a href="' . $large_img[0] .'" data-gallery><img src="' . $medium_img[0] . '" /></a>';
+          	$output .= '<a href="' . $large_img[0] .'" title="' . $image_title .'" data-gallery><img src="' . $medium_img[0] . '" alt="' .$image->post_excerpt .'"/></a>';
           } else {
           	$output.= preg_replace( '/(width|height)="\d*"\s/', "", '<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-original="' 
   				. $img_src[0] . '" data-large-url="' . $large_img[0] . '" />');
@@ -323,15 +328,6 @@ function parse_gallery_shortcode($atts) {
 		}
 		$output.= '</div>';
     } elseif ( $gallery_type === 'lightbox') {
-    	$output .= '<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-					    <div class="slides"></div>
-					    <h3 class="title"></h3>
-					    <a class="prev">‹</a>
-					    <a class="next">›</a>
-					    <a class="close">×</a>
-					    <a class="play-pause"></a>
-					    <ol class="indicator"></ol>
-					</div>';
 		$output .= '<div id="links">';
 		foreach ($images as $idx => $image) {
 			$large_img = wp_get_attachment_image_src( $image->ID, 'large');
