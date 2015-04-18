@@ -220,23 +220,14 @@ function parse_gallery_shortcode($atts) {
     		default:
     			$image_size = 'medium';
     	}
-
+    	if ($gallery_type === 'masonry_lightbox'){
+    		$output .='<div id="masonry_lightbox" style="display:none"></div>';
+    	}
       $output .= '<div class="gallery-container';
       if ($gallery_type === 'masonry_expand') {
       	$output .= ' gallery-container-expand';
       }
       $output .= '">'; 
-      if ($gallery_type === 'masonry_lightbox') {
-    	$output .= '<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-					    <div class="slides"></div>
-					    <h3 class="title"></h3>
-					    <a class="prev">‹</a>
-					    <a class="next">›</a>
-					    <a class="close">×</a>
-					    <a class="play-pause"></a>
-					    <ol class="indicator"></ol>
-					</div>';  	
-      }
       foreach ( $images as $idx=>$image ) {    
           $caption = $image->post_excerpt;
    

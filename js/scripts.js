@@ -12871,7 +12871,8 @@ function makeArray( obj ) {
                 {
                     container: container[0],
                     index: this,
-                    event: event
+                    event: event,
+                    disableScroll: false,
                 },
                 callbacks
             ),
@@ -12884,8 +12885,7 @@ function makeArray( obj ) {
     });
 
 }));
-;/*jshint multistr: true */
-( function($) {
+;( function($) {
 	'use strict';
 
   /*
@@ -12935,7 +12935,7 @@ function makeArray( obj ) {
 
   $('.gallery-container .item').on('click',function(){
     //return early if there is a lightbox attached
-    if ($('#blueimp-gallery').length) {
+    if ($('#masonry_lightbox').length) {
       return;
     }
     var $this = $(this);
@@ -13051,29 +13051,6 @@ function makeArray( obj ) {
         sides: "6"
       });     
      });
-  }
-
-  //blueimp-gallery
-  var $blueimp = $('#blueimp-gallery');
-  if($blueimp.length) {
-    //first attach needed controls to body
-$('body').append('<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">\
-              <div class="slides"></div>\
-              <h3 class="title"></h3>\
-              <a class="prev">‹</a>\
-              <a class="next">›</a>\
-              <a class="close">×</a>\
-              <a class="play-pause"></a>\
-              <ol class="indicator"></ol>\
-          </div>');    
-    document.getElementById('links').onclick = function (event) {
-        event = event || window.event;
-        var target = event.target || event.srcElement,
-            link = target.src ? target.parentNode : target,
-            options = {index: link, event: event},
-            links = this.getElementsByTagName('a');
-        blueimp.Gallery(links, options);
-    };    
   }
 
   //zoom
