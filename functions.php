@@ -327,17 +327,6 @@ function parse_gallery_shortcode($atts) {
 			 
 		}
 		$output.= '</div>';
-    } elseif ( $gallery_type === 'lightbox') {
-		$output .= '<div id="links">';
-		foreach ($images as $idx => $image) {
-			$large_img = wp_get_attachment_image_src( $image->ID, 'large');
-			$thumb_img = wp_get_attachment_image_src( $image->ID, 'medium');
-			$output .='<a href="' . $large_img[0] .'" title="' . $image->post_excerpt .'">'
-					.'<img src="'. $thumb_img[0] .'" alt="' . $image->post_excerpt .'">'
-				   	.'</a>';
-		}
-		$output .= '</div>';
-
     }
 
     return $output;
@@ -370,8 +359,7 @@ add_action('print_media_templates', function(){
 	    <option value="flipbook"> flipbook </option> 
 	    <option value="bxslider"> bxslider </option>
 	    <option value="cuboid"> cuboid </option>
-	    <option value="spinning">spinning</option>
-	    <option value="lightbox">lightbox</option>
+	    <option value="spinning">spinning</option> 
 	  </select>
 	</label>
 </script>
