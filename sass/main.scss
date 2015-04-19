@@ -360,10 +360,12 @@ footer {
     color: #000;
     font-size: 22px;
 }
-.navbar-brand,
-.navbar-nav li a {
+.navbar-brand {
     line-height: 80px;
     height: 80px;
+    padding-top: 0;    
+}
+.navbar-nav li a {
     padding-top: 0;
 }
 .navbar-nav .dropdown-menu li a {

@@ -6,15 +6,16 @@
    */
   function content_padding() {
     //set the content padding according to the menu height
-    var $header = $('.ha-header');
+    var $header = $('nav.navbar');
     var $header_height = $header.height();
+    console.log($header_height);
     $('#content').css("padding-top", $header_height);
   }
-  if ($('#masthead').hasClass('fixed')) {
+  if ($('nav.navbar').hasClass('navbar-fixed-top')) {
     content_padding();
   }
   $(window).on('resize', function() {
-    if ($('.ha-header').hasClass('fixed')) {
+    if ($('nav.navbar').hasClass('navbar-fixed-top')) {
       content_padding();
     }
   });
