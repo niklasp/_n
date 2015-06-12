@@ -260,7 +260,7 @@ function parse_gallery_shortcode($atts) {
       $output .= '</div>';      
 
     } elseif ($atts['gallery_type'] == 'cuboid') {
-      $attr = None;
+      $attr = NULL;
       $output = '<div id="cuboid">';
        //. '<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>';
       foreach ($images as $image) {
@@ -271,7 +271,7 @@ function parse_gallery_shortcode($atts) {
 			$attr = array('class' => 'full');
       	}
       	$output .= '<li>'
-        		. preg_replace( '/(width|height)="\d*"\s/', $replace, wp_get_attachment_image($image->ID,'large', false, $attr))
+        		. preg_replace( '/(width|height)="\d*"\s/', "", wp_get_attachment_image($image->ID,'large', false, $attr))
         		. '</li>';
       }
       $output .= '</div>';
